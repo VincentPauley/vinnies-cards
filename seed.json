@@ -2,6 +2,7 @@
   "last-edited": "2021-08-22T22:50:14.025Z",
   "cards": [
     {
+      "id": "1",
       "name": "Roberto Osuna",
       "team": "Astros",
       "brand": "Topps",
@@ -15,6 +16,7 @@
       "single_player": true
     },
     {
+      "id": "2",
       "name": "Mitch Haniger",
       "team": "Mariners",
       "brand": "Topps",
@@ -28,6 +30,7 @@
       "single_player": true
     },
     {
+      "id": "3",
       "name": "Dylan Bundy",
       "team": "Angels",
       "brand": "Topps",
@@ -41,6 +44,7 @@
       "single_player": true
     },
     {
+      "id": "4",
       "name": "Nick Senzel",
       "team": "Reds",
       "brand": "Topps",
@@ -54,6 +58,7 @@
       "single_player": true
     },
     {
+      "id": "5",
       "name": "Washington Nationals",
       "team": "Nationals",
       "brand": "Topps",
@@ -67,6 +72,7 @@
       "single_player": false
     },
     {
+      "id": "6",
       "name": "Blake Taylor",
       "team": "Astros",
       "brand": "Topps",
@@ -80,6 +86,7 @@
       "single_player": true
     },
     {
+      "id": "7",
       "name": "Ryan Yarbrough",
       "team": "Rays",
       "brand": "Topps",
@@ -93,6 +100,7 @@
       "single_player": true
     },
     {
+      "id": "8",
       "name": "Albert Pujols",
       "team": "Angels",
       "brand": "Topps",
@@ -106,6 +114,7 @@
       "single_player": true
     },
     {
+      "id": "9",
       "name": "Walk-Off Apart",
       "team": "Giants",
       "brand": "Topps",

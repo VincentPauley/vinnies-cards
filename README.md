@@ -19,4 +19,6 @@ My CRUD system for cateloging and viewing my baseball card collection. Yes, I do
 chmod +x ./build.sh
 ```
 
+- You'll need to install the Python driver for RethinkDB to seed the database from build script: https://rethinkdb.com/docs/install-drivers/python/
+
 - references: https://rethinkdb.com/docs/importing/
