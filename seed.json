@@ -1,131 +1,128 @@
-{
-  "last-edited": "2021-08-22T22:50:14.025Z",
-  "cards": [
-    {
-      "id": "1",
-      "name": "Roberto Osuna",
-      "team": "Astros",
-      "brand": "Topps",
-      "position": "Pitcher",
-      "year": 2021,
-      "series": {
-        "is": 1,
-        "of": 2
-      },
-      "series_number": 2,
-      "single_player": true
+[
+  {
+    "id": "1",
+    "name": "Roberto Osuna",
+    "team": "Astros",
+    "brand": "Topps",
+    "position": "Pitcher",
+    "year": 2021,
+    "series": {
+      "is": 1,
+      "of": 2
     },
-    {
-      "id": "2",
-      "name": "Mitch Haniger",
-      "team": "Mariners",
-      "brand": "Topps",
-      "position": "Outfield",
-      "year": 2021,
-      "series": {
-        "is": 1,
-        "of": 2
-      },
-      "series_number": 149,
-      "single_player": true
+    "series_number": 2,
+    "single_player": true
+  },
+  {
+    "id": "2",
+    "name": "Mitch Haniger",
+    "team": "Mariners",
+    "brand": "Topps",
+    "position": "Outfield",
+    "year": 2021,
+    "series": {
+      "is": 1,
+      "of": 2
     },
-    {
-      "id": "3",
-      "name": "Dylan Bundy",
-      "team": "Angels",
-      "brand": "Topps",
-      "position": "Pitcher",
-      "year": 2021,
-      "series": {
-        "is": 1,
-        "of": 2
-      },
-      "series_number": 128,
-      "single_player": true
+    "series_number": 149,
+    "single_player": true
+  },
+  {
+    "id": "3",
+    "name": "Dylan Bundy",
+    "team": "Angels",
+    "brand": "Topps",
+    "position": "Pitcher",
+    "year": 2021,
+    "series": {
+      "is": 1,
+      "of": 2
     },
-    {
-      "id": "4",
-      "name": "Nick Senzel",
-      "team": "Reds",
-      "brand": "Topps",
-      "position": "Outfield",
-      "year": 2021,
-      "series": {
-        "is": 1,
-        "of": 2
-      },
-      "series_number": 55,
-      "single_player": true
+    "series_number": 128,
+    "single_player": true
+  },
+  {
+    "id": "4",
+    "name": "Nick Senzel",
+    "team": "Reds",
+    "brand": "Topps",
+    "position": "Outfield",
+    "year": 2021,
+    "series": {
+      "is": 1,
+      "of": 2
     },
-    {
-      "id": "5",
-      "name": "Washington Nationals",
-      "team": "Nationals",
-      "brand": "Topps",
-      "position": "N/A",
-      "year": 2021,
-      "series": {
-        "is": 1,
-        "of": 2
-      },
-      "series_number": 58,
-      "single_player": false
+    "series_number": 55,
+    "single_player": true
+  },
+  {
+    "id": "5",
+    "name": "Washington Nationals",
+    "team": "Nationals",
+    "brand": "Topps",
+    "position": "N/A",
+    "year": 2021,
+    "series": {
+      "is": 1,
+      "of": 2
     },
-    {
-      "id": "6",
-      "name": "Blake Taylor",
-      "team": "Astros",
-      "brand": "Topps",
-      "position": "Pitcher",
-      "year": 2021,
-      "series": {
-        "is": 1,
-        "of": 2
-      },
-      "series_number": 228,
-      "single_player": true
+    "series_number": 58,
+    "single_player": false
+  },
+  {
+    "id": "6",
+    "name": "Blake Taylor",
+    "team": "Astros",
+    "brand": "Topps",
+    "position": "Pitcher",
+    "year": 2021,
+    "series": {
+      "is": 1,
+      "of": 2
     },
-    {
-      "id": "7",
-      "name": "Ryan Yarbrough",
-      "team": "Rays",
-      "brand": "Topps",
-      "position": "Pitcher",
-      "year": 2021,
-      "series": {
-        "is": 1,
-        "of": 2
-      },
-      "series_number": 196,
-      "single_player": true
+    "series_number": 228,
+    "single_player": true
+  },
+  {
+    "id": "7",
+    "name": "Ryan Yarbrough",
+    "team": "Rays",
+    "brand": "Topps",
+    "position": "Pitcher",
+    "year": 2021,
+    "series": {
+      "is": 1,
+      "of": 2
     },
-    {
-      "id": "8",
-      "name": "Albert Pujols",
-      "team": "Angels",
-      "brand": "Topps",
-      "position": "First Base / Designated Hitter",
-      "year": 2021,
-      "series": {
-        "is": 1,
-        "of": 2
-      },
-      "series_number": 178,
-      "single_player": true
+    "series_number": 196,
+    "single_player": true
+  },
+  {
+    "id": "8",
+    "name": "Albert Pujols",
+    "team": "Angels",
+    "brand": "Topps",
+    "position": "First Base / Designated Hitter",
+    "year": 2021,
+    "series": {
+      "is": 1,
+      "of": 2
     },
-    {
-      "id": "9",
-      "name": "Walk-Off Apart",
-      "team": "Giants",
-      "brand": "Topps",
-      "position": "",
-      "year": 2021,
-      "series": {
-        "is": 1,
-        "of": 2
-      },
-      "series_number": 258,
-      "single_player": false
-    }
-  ]
-}
+    "series_number": 178,
+    "single_player": true
+  },
+  {
+    "id": "9",
+    "name": "Walk-Off Apart",
+    "team": "Giants",
+    "brand": "Topps",
+    "position": "",
+    "year": 2021,
+    "series": {
+      "is": 1,
+      "of": 2
+    },
+    "series_number": 258,
+    "single_player": false
+  }
+]
