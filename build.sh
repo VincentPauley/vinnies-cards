@@ -1,1 +1,0 @@
-rethinkdb import -f seed.json --table test.baseball --pkey id
