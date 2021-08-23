@@ -1,8 +1,8 @@
 <template>
   <div>
     <label :for="id">{{ label }}:</label>
-    <input type="text" :id="id" v-model="value">
-    <p v-if="missingRequirement">Missing Required Entry</p>
+    <input type="text" :id="id" v-model="value" @blur="handleBlur">
+    <p v-if="showMissingRequirement">Missing Required Entry</p>
   </div>
 </template>
 
@@ -23,17 +23,18 @@ export default {
     }
   },
   data: () => ({
-    value: ""
+    value: "",
+    isDirty: false
   }),
   computed: {
-    missingRequirement() {
-      return this.required && this.value === "";
+    showMissingRequirement() {
+      return this.required && this.value === "" && this.isDirty;
+    }
+  },
+  methods: {
+    handleBlur() {
+      this.isDirty = true;
     }
   }
-  // methods: {
-  //   validate() {
-
-  //   }
-  // }
 };
 </script>
