@@ -12,7 +12,7 @@ My CRUD system for cateloging and viewing my baseball card collection. Yes, I do
 
 ### Prerequisites
 
-- You must have RethinkDB running on the system where you want to run the project
+- You must have RethinkDB running on the system where you want to run the project: https://rethinkdb.com/docs/install/
 - Install packages
 
 ```sh

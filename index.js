@@ -1,19 +1,43 @@
+require('dotenv').config();
+r = require('rethinkdb');
 const express = require('express');
 const app = express();
 
-// temp
-const fs = require('fs');
+function createConnection(req, res, next) {
+  r.connect({
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT
+  })
+    .then(function(conn) {
+      req._rdbConn = conn;
+      next();
+    })
+    .error(err => {
+      console.log(err);
+    });
+}
+
+function closeConnection(req, res, next) {
+  req._rdbConn.close();
+}
+
+app.use(createConnection);
 
 app.get('/', (req, res) => {
-  fs.readFile('seed.json', 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-
-    res.json(JSON.parse(data));
-  });
+  r.table('baseball')
+    .run(req._rdbConn)
+    .then(cursor => {
+      return cursor.toArray();
+    })
+    .then(result => {
+      res.send(JSON.stringify(result));
+    })
+    .error(err => {
+      console.log(err);
+    });
 });
+
+app.use(closeConnection);
 
 app.listen(3000, () => {
   console.log('listening on port 3000');
