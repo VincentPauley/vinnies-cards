@@ -1,5 +1,6 @@
 require('dotenv').config();
 r = require('rethinkdb');
+const cors = require('cors');
 const express = require('express');
 const app = express();
 
@@ -21,6 +22,7 @@ function closeConnection(req, res, next) {
   req._rdbConn.close();
 }
 
+app.use(cors());
 app.use(createConnection);
 
 app.get('/', (req, res) => {
