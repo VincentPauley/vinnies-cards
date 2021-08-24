@@ -59,11 +59,12 @@
 
       <button type="submit" :disabled="!allValid" @click.prevent="submit">Submit</button>
     </form>
-    <div>{{ allValid }}</div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data: () => ({
     cardModel: {
@@ -122,7 +123,14 @@ export default {
       this.valid.series = /^\d{1,2}$/.test(this.cardModel.series);
     },
     submit() {
-      console.log("...calling submit");
+      axios
+        .post("http://localhost:3000/new-card", this.cardModel)
+        .then(r => {
+          console.log("r: ", r);
+        })
+        .catch(e => {
+          console.log("e: ", e);
+        });
     }
   }
 };

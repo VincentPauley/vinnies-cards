@@ -1,5 +1,6 @@
 require('dotenv').config();
 r = require('rethinkdb');
+const bodyparser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
 const app = express();
@@ -23,6 +24,10 @@ function closeConnection(req, res, next) {
 }
 
 app.use(cors());
+// Body-parser middleware
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.json());
+
 app.use(createConnection);
 
 app.get('/', (req, res) => {
@@ -36,6 +41,24 @@ app.get('/', (req, res) => {
     })
     .error(err => {
       console.log(err);
+    });
+});
+
+app.post('/new-card', (req, res) => {
+  r.table('baseball')
+    .insert({
+      id: Math.floor(Math.random() * 500),
+      name: req.body.name,
+      team: req.body.team,
+      brand: req.body.brand,
+      position: req.body.position,
+      year: req.body.year,
+      series_number: req.body.series,
+      single_player: req.body.singlePlayer
+    })
+    .run(req._rdbConn, function(err, result) {
+      if (err) throw err;
+      console.log(JSON.stringify(result, null, 2));
     });
 });
 
