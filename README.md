@@ -30,3 +30,24 @@ npm run seed
 ```sh
 npm run drop
 ```
+
+## TODOS
+
+### Bugs
+
+[ ] - possible issue involving duplicate create?
+
+### Technical
+
+[ ] - API file
+[ ] - env file for FE
+[ ] - async/await setup
+[ ] - unit testing
+
+### Features
+
+[ ] - separate table for brands
+[ ] - player can be multi-position
+[ ] - delete route
+[ ] - refresh ID route
+[ ] - error handling for network down in "View Cards"

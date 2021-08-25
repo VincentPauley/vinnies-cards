@@ -45,6 +45,12 @@ app.get('/', (req, res) => {
     });
 });
 
+// TODO: possible better option with primary key search
+// r.table('authors').get('7644aaf2-9928-4231-aa68-4e65e31bf219').
+//     run(connection, function(err, result) {
+//         if (err) throw err;
+//         console.log(JSON.stringify(result, null, 2));
+//     });
 app.get('/find-by-id/:id', (req, res) => {
   const id = req.params.id;
 
@@ -97,6 +103,33 @@ app.post('/new-card', (req, res) => {
     .run(req._rdbConn, function(err, result) {
       if (err) throw err;
       console.log(JSON.stringify(result, null, 2));
+    });
+});
+
+app.delete('/card/:id', (req, res) => {
+  const id = req.params.id.toString();
+
+  r.table('baseball')
+    .filter(r.row('id').eq(id))
+    .delete()
+    .run(req._rdbConn, function(err, result) {
+      if (err) {
+        console.log(err);
+        return res
+          .status(500)
+          .send({ success: false, msg: JSON.stringify(err) });
+      }
+
+      console.log('-result-');
+      console.log(result);
+
+      if (result.deleted !== 1) {
+        return res
+          .status(200)
+          .send({ success: false, msg: 'failed to delete record.' });
+      }
+
+      res.status(200).send({ success: true, msg: 'record deleted.' });
     });
 });
 

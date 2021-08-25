@@ -47,7 +47,6 @@ export default {
       required: true
     },
     series: {
-      type: Number,
       required: true
     },
     seriesNumber: {
