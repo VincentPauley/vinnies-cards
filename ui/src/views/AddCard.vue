@@ -53,6 +53,17 @@
       </div>
 
       <div>
+        <label for="series">Series Number</label>
+        <input
+          id="series"
+          type="number"
+          v-model="cardModel.seriesNumber"
+          @keyup="validateSeriesNumber"
+        >
+        <b v-if="!valid.series">INVALID</b>
+      </div>
+
+      <div>
         <label for="single-player">Single Player Card</label>
         <input type="checkbox" id="single-player" value="test" v-model="cardModel.singlePlayer">
       </div>
@@ -74,6 +85,7 @@ export default {
       brand: "SELECT",
       year: null,
       series: null,
+      seriesNumber: null,
       singlePlayer: true
     },
     valid: {
@@ -82,7 +94,8 @@ export default {
       brand: false,
       position: false,
       year: false,
-      series: false
+      series: false,
+      seriesNumber: false
     }
   }),
   computed: {
@@ -108,7 +121,7 @@ export default {
       this.valid.name = /\w{5,}/i.test(this.cardModel.name);
     },
     validateTeam() {
-      this.valid.team = /\w{5,}/i.test(this.cardModel.team);
+      this.valid.team = /\w{4,}/i.test(this.cardModel.team);
     },
     validateBrand() {
       this.valid.brand = this.cardModel.brand !== "SELECT";
@@ -121,6 +134,9 @@ export default {
     },
     validateSeries() {
       this.valid.series = /^\d{1,2}$/.test(this.cardModel.series);
+    },
+    validateSeriesNumber() {
+      this.valid.seriesNumber = /^\d{1,3}$/.test(this.cardModel.seriesNumber);
     },
     submit() {
       axios

@@ -8,11 +8,14 @@
       Team:
       <b>{{ cardData.team }}</b>
     </p>
+    <div style="text-align:left;padding:1rem;">
+      <!-- <button @click="inspectCard">Inspect</button> -->
+      <router-link :to="inspectLink">Inspect</router-link>
+    </div>
     <CardIssue
       :brand="cardData.brand"
       :year="cardData.year"
-      :series-is="cardData.series.is"
-      :series-issued="cardData.series.of"
+      :series="cardData.series.is"
       :series-number="cardData.series_number"
     />
   </li>
@@ -41,6 +44,23 @@ export default {
     cardData: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    // TODO: this whole prop should be removed after model correction
+    series() {
+      if (this.cardData.series.is) {
+        return this.cardData.series.is;
+      }
+      return this.cardData.series;
+    },
+    inspectLink() {
+      return `/inspect-card/${this.cardData.id}`;
+    }
+  },
+  methods: {
+    inspectCard() {
+      console.log(this.cardData.id);
     }
   }
 };

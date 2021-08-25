@@ -29,7 +29,13 @@ const routes = [
     path: '/add-card',
     name: 'AddCard',
     component: () =>
-      import(/* webpackChunkName: "viewCards" */ '../views/AddCard.vue')
+      import(/* webpackChunkName: "AddCard" */ '../views/AddCard.vue')
+  },
+  {
+    path: '/inspect-card/:id',
+    name: 'InspectCard',
+    component: () =>
+      import(/* webpackChunkName: "InspectCard" */ '../views/InspectCard.vue')
   }
 ];
 

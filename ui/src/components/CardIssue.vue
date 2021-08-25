@@ -9,7 +9,7 @@
     <tr>
       <td>{{ brand }}</td>
       <td>{{ year }}</td>
-      <td>{{ seriesIs }}/{{ seriesIssued }}</td>
+      <td>{{ series }}</td>
       <td>{{ seriesNumber }}</td>
     </tr>
   </table>
@@ -46,11 +46,7 @@ export default {
       type: Number,
       required: true
     },
-    seriesIs: {
-      type: Number,
-      required: true
-    },
-    seriesIssued: {
+    series: {
       type: Number,
       required: true
     },

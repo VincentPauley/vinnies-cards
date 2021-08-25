@@ -1,5 +1,6 @@
 require('dotenv').config();
 r = require('rethinkdb');
+const uniqid = require('uniqid');
 const bodyparser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
@@ -44,16 +45,53 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/find-by-id/:id', (req, res) => {
+  const id = req.params.id;
+
+  r.table('baseball')
+    .filter(r.row('id').eq(id))
+    .run(req._rdbConn, function(err, cursor) {
+      if (err) throw err;
+      cursor.toArray(function(err, result) {
+        if (err) throw err;
+
+        if (result.length < 1) {
+          return res.send({
+            success: false,
+            found: false,
+            msg: `no match found for id: ${id}`
+          });
+        }
+
+        if (result.length > 1) {
+          return res.send({
+            success: false,
+            found: true,
+            msg: `more than one record found for id: ${id}`
+          });
+        }
+
+        return res.send({
+          success: true,
+          found: true,
+          record: result[0]
+        });
+      });
+    });
+});
+
 app.post('/new-card', (req, res) => {
   r.table('baseball')
     .insert({
-      id: Math.floor(Math.random() * 500),
+      id: uniqid(),
+      created: new Date().toISOString(),
       name: req.body.name,
       team: req.body.team,
       brand: req.body.brand,
       position: req.body.position,
-      year: req.body.year,
-      series_number: req.body.series,
+      year: parseInt(req.body.year),
+      series: parseInt(req.body.series),
+      series_number: parseInt(req.body.seriesNumber),
       single_player: req.body.singlePlayer
     })
     .run(req._rdbConn, function(err, result) {
