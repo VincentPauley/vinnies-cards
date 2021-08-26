@@ -44,7 +44,21 @@ npm run drop
 [ ] - async/await setup
 [ ] - unit testing
 
+### Data
+
+[X] - card type table
+
+    ... individual card record will receive the abbreviation which can be
+      then expanded upon through a DB lookup to match human-readable version
+
+[ ] - series type needed
+[ ] - single player can become typed instead.
+[ ] - need approved model on the FE to show a card needing update.
+
 ### Features
+
+[ ] - for card add - card type should be enabled only after brand & year
+[ ] - gui for creating brand/year type details
 
 [ ] - separate table for brands
 [ ] - player can be multi-position

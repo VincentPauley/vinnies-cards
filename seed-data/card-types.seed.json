@@ -1,0 +1,34 @@
+{
+  "cardTypes": [
+    {
+      "brand": "Topps",
+      "year": 2021,
+      "types": [
+        {
+          "type": "Team Card",
+          "id": "T"
+        },
+        {
+          "type": "League Leaders",
+          "id": "LL"
+        },
+        {
+          "type": "Rookie",
+          "id": "R"
+        },
+        {
+          "type": "Future Stars",
+          "id": "FS"
+        },
+        {
+          "type": "Combo",
+          "id": "C"
+        },
+        {
+          "type": "World Series Highlights",
+          "id": "WSH"
+        }
+      ]
+    }
+  ]
+}

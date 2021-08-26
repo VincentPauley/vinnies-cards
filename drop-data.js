@@ -12,7 +12,7 @@ r.connect(connectionData, (err, conn) => {
   connection = conn;
 
   r.db('test')
-    .tableDrop('baseball')
+    .tableDrop('cards')
     .run(connection, (err, result) => {
       if (err) {
         console.error(err);

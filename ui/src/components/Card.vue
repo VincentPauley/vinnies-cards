@@ -15,7 +15,7 @@
     <CardIssue
       :brand="cardData.brand"
       :year="cardData.year"
-      :series="cardData.series"
+      :series="series"
       :series-number="cardData.series_number"
     />
   </li>

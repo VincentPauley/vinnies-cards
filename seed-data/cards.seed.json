@@ -1,0 +1,103 @@
+{
+  "cards": [
+    {
+      "id": "6ftwex212jkss1x52c",
+      "name": "Roberto Osuna",
+      "team": "Astros",
+      "brand": "Topps",
+      "position": "Pitcher",
+      "year": 2021,
+      "series": 1,
+      "series_number": 2,
+      "single_player": true
+    },
+    {
+      "id": "6ftwex212jkss1x52b",
+      "name": "Mitch Haniger",
+      "team": "Mariners",
+      "brand": "Topps",
+      "position": "Outfield",
+      "year": 2021,
+      "series": 1,
+      "series_number": 149,
+      "single_player": true
+    },
+    {
+      "id": "6ftwex212jkss1x52a",
+      "name": "Dylan Bundy",
+      "team": "Angels",
+      "brand": "Topps",
+      "position": "Pitcher",
+      "year": 2021,
+      "series": 1,
+      "series_number": 128,
+      "single_player": true
+    },
+    {
+      "id": "6ftwex212jkss1x529",
+      "name": "Nick Senzel",
+      "team": "Reds",
+      "brand": "Topps",
+      "position": "Outfield",
+      "year": 2021,
+      "series": 1,
+      "series_number": 55,
+      "single_player": true
+    },
+    {
+      "id": "6ftwex212jkss1x528",
+      "name": "Washington Nationals",
+      "team": "Nationals",
+      "brand": "Topps",
+      "position": "N/A",
+      "year": 2021,
+      "series": 1,
+      "series_number": 58,
+      "single_player": false
+    },
+    {
+      "id": "6ftwex212jkss1x527",
+      "name": "Blake Taylor",
+      "team": "Astros",
+      "brand": "Topps",
+      "position": "Pitcher",
+      "year": 2021,
+      "series": 1,
+      "series_number": 228,
+      "single_player": true
+    },
+    {
+      "id": "6ftwex212jkss1x526",
+      "name": "Ryan Yarbrough",
+      "team": "Rays",
+      "brand": "Topps",
+      "position": "Pitcher",
+      "year": 2021,
+      "series": 1,
+      "series_number": 196,
+      "single_player": true
+    },
+    {
+      "id": "6ftwex212jkss1x525",
+      "name": "Albert Pujols",
+      "team": "Angels",
+      "brand": "Topps",
+      "position": "First Base / Designated Hitter",
+      "year": 2021,
+      "series": 1,
+      "series_number": 178,
+      "single_player": true
+    },
+    {
+      "id": "6ftwex212jkss1x524",
+      "name": "Walk-Off Apart",
+      "team": "Giants",
+      "brand": "Topps",
+      "position": "",
+      "year": 2021,
+      "series": 1,
+      "series_number": 258,
+      "single_player": false
+    }
+  ]
+}
