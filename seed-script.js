@@ -1,14 +1,11 @@
 require('dotenv').config();
 r = require('rethinkdb');
+const seeds = require('./seed-data/index.js');
 
 const CONNECTION_DATA = {
   host: process.env.DB_HOST,
   port: process.env.DB_PORT
 };
-
-const { cards } = require('./seed-data/cards.seed.json');
-const { cardTypes } = require('./seed-data/card-types.seed.json');
-const { brands } = require('./seed-data/brands.seed.json');
 
 function createTable(tableName) {
   let connection = null;
@@ -61,24 +58,18 @@ function seedTable(tableName, data) {
 
 (async () => {
   try {
-    // generate tables
-    await Promise.all([
-      createTable('cards'),
-      createTable('cardTypes'),
-      createTable('brands')
-    ]);
+    tableNames = seeds.slice().map(seed => seed.tableName);
 
-    console.log('=Tables Created=');
+    console.log('creating tables...');
 
-    // seed tables
-    await Promise.all([
-      seedTable('cards', cards),
-      seedTable('cardTypes', cardTypes),
-      seedTable('brands', brands)
-    ]);
+    await Promise.all(tableNames.map(t => createTable(t)));
 
-    console.log('=Tables Seeded=');
-    console.log('finished...');
+    console.log(`${tableNames.length} tables created`);
+    console.log('seeding tables...');
+
+    await Promise.all(seeds.map(s => seedTable(s.tableName, s.records)));
+
+    console.log('tables seeded');
   } catch (e) {
     console.error(e);
   }

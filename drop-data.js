@@ -32,7 +32,8 @@ function dropTable(tableName) {
   await Promise.all([
     dropTable('cards'),
     dropTable('cardTypes'),
-    dropTable('brands')
+    dropTable('brands'),
+    dropTable('mlbTeams')
   ]);
   console.log('=All Tables Dropped=');
   console.log('finished...');

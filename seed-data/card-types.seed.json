@@ -1,5 +1,6 @@
 {
-  "cardTypes": [
+  "tableName": "cardTypes",
+  "records": [
     {
       "brand": "Topps",
       "year": 2021,

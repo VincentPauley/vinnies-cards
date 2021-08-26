@@ -1,0 +1,179 @@
+{
+  "tableName": "mlbTeams",
+  "records": [
+    {
+      "name": "Rays",
+      "location": "Tampa Bays",
+      "league": "AL",
+      "division": "E"
+    },
+    {
+      "name": "Yankees",
+      "location": "New York",
+      "league": "AL",
+      "division": "E"
+    },
+    {
+      "name": "Red Sox",
+      "location": "Boston",
+      "league": "AL",
+      "division": "E"
+    },
+    {
+      "name": "Blue Jays",
+      "location": "Toronto",
+      "league": "AL",
+      "division": "E"
+    },
+    {
+      "name": "Orioles",
+      "location": "Baltimore",
+      "league": "AL",
+      "division": "E"
+    },
+    {
+      "name": "White Sox",
+      "location": "Chicago",
+      "league": "AL",
+      "division": "C"
+    },
+    {
+      "name": "Indians",
+      "location": "Cleveland",
+      "league": "AL",
+      "division": "C"
+    },
+    {
+      "name": "Royals",
+      "location": "Kansas City",
+      "league": "AL",
+      "division": "C"
+    },
+    {
+      "name": "Twins",
+      "location": "Minnesota",
+      "league": "AL",
+      "division": "C"
+    },
+    {
+      "name": "Astros",
+      "location": "Houston",
+      "league": "AL",
+      "division": "W"
+    },
+    {
+      "name": "Athletics",
+      "location": "Tampa Bays",
+      "league": "AL",
+      "division": "W"
+    },
+    {
+      "name": "Mariners",
+      "location": "Seattle",
+      "league": "AL",
+      "division": "W"
+    },
+    {
+      "name": "Angels",
+      "location": "Annaheim",
+      "league": "AL",
+      "division": "W"
+    },
+    {
+      "name": "Rangers",
+      "location": "Texas",
+      "league": "AL",
+      "division": "W"
+    },
+    {
+      "name": "Braves",
+      "location": "Atlanta",
+      "league": "NL",
+      "division": "E"
+    },
+    {
+      "name": "Phillies",
+      "location": "Philadelphia",
+      "league": "NL",
+      "division": "E"
+    },
+    {
+      "name": "Mets",
+      "location": "New York",
+      "league": "NL",
+      "division": "E"
+    },
+    {
+      "name": "Nationals",
+      "location": "Washington",
+      "league": "NL",
+      "division": "E"
+    },
+    {
+      "name": "Marlins",
+      "location": "Miami",
+      "league": "NL",
+      "division": "E"
+    },
+    {
+      "name": "Brewers",
+      "location": "Milwuakee",
+      "league": "NL",
+      "division": "C"
+    },
+    {
+      "name": "Reds",
+      "location": "Cinncinatti",
+      "league": "NL",
+      "division": "C"
+    },
+    {
+      "name": "Cardinals",
+      "location": "St Louis",
+      "league": "NL",
+      "division": "C"
+    },
+    {
+      "name": "Cubs",
+      "location": "Chicago",
+      "league": "NL",
+      "division": "C"
+    },
+    {
+      "name": "Pirates",
+      "location": "Pittsburgh",
+      "league": "NL",
+      "division": "C"
+    },
+    {
+      "name": "Giants",
+      "location": "San Fransico",
+      "league": "NL",
+      "division": "W"
+    },
+    {
+      "name": "Dodgers",
+      "location": "Los Angeles",
+      "league": "NL",
+      "division": "W"
+    },
+    {
+      "name": "Padres",
+      "location": "San Diego",
+      "league": "NL",
+      "division": "W"
+    },
+    {
+      "name": "Rockies",
+      "location": "Colorado",
+      "league": "NL",
+      "division": "W"
+    },
+    {
+      "name": "Diamondbacks",
+      "location": "Arizona",
+      "league": "NL",
+      "division": "W"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 {
-  "brands": [
+  "tableName": "brands",
+  "records": [
     {
       "name": "Topps",
       "id": "T"

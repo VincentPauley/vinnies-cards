@@ -1,5 +1,6 @@
 {
-  "cards": [
+  "tableName": "cards",
+  "records": [
     {
       "name": "Roberto Osuna",
       "team": "Astros",
