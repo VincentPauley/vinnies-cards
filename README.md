@@ -13,19 +13,28 @@ My CRUD system for cateloging and viewing my baseball card collection. Yes, I do
 ### Prerequisites
 
 - You must have RethinkDB running on the system where you want to run the project: https://rethinkdb.com/docs/install/
-- Install packages
+
+### Install Project Dependencies
 
 ```sh
 npm install
 ```
 
+### UI Install
+
+TODO...
+
 ### Seed Data
+
+Assuming you have rethink db installed on your machine, run the below command from the root of this directory and all tables will be generated and seeded with initial data.
 
 ```sh
 npm run seed
 ```
 
 ### Remove Data
+
+The below command will drop all tables and their included data. WARNING: this is an irreversible aciton that will remove ALL data, not just data from the seed files.
 
 ```sh
 npm run drop

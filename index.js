@@ -32,7 +32,7 @@ app.use(bodyparser.json());
 app.use(createConnection);
 
 app.get('/', (req, res) => {
-  r.table('baseball')
+  r.table('cards')
     .run(req._rdbConn)
     .then(cursor => {
       return cursor.toArray();
@@ -45,6 +45,18 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/brands', (req, res) => {
+  r.table('brands').run(req._rdbConn, (err, cursor) => {
+    if (err) throw err;
+
+    cursor.toArray((err, records) => {
+      if (err) throw err;
+
+      res.send(records);
+    });
+  });
+});
+
 // TODO: possible better option with primary key search
 // r.table('authors').get('7644aaf2-9928-4231-aa68-4e65e31bf219').
 //     run(connection, function(err, result) {
@@ -54,7 +66,7 @@ app.get('/', (req, res) => {
 app.get('/find-by-id/:id', (req, res) => {
   const id = req.params.id;
 
-  r.table('baseball')
+  r.table('cards')
     .filter(r.row('id').eq(id))
     .run(req._rdbConn, function(err, cursor) {
       if (err) throw err;
@@ -87,7 +99,7 @@ app.get('/find-by-id/:id', (req, res) => {
 });
 
 app.post('/new-card', (req, res) => {
-  r.table('baseball')
+  r.table('cards')
     .insert({
       id: uniqid(),
       created: new Date().toISOString(),
@@ -109,7 +121,7 @@ app.post('/new-card', (req, res) => {
 app.delete('/card/:id', (req, res) => {
   const id = req.params.id.toString();
 
-  r.table('baseball')
+  r.table('cards')
     .filter(r.row('id').eq(id))
     .delete()
     .run(req._rdbConn, function(err, result) {
