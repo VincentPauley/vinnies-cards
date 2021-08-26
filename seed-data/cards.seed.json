@@ -3,92 +3,101 @@
     {
       "name": "Roberto Osuna",
       "team": "Astros",
-      "brand": "Topps",
+      "brand": "T",
       "position": "Pitcher",
       "year": 2021,
       "series": 1,
       "series_number": 2,
-      "single_player": true
+      "cardType": "B",
+      "created": "2021-08-26T16:42:30.166Z"
     },
     {
       "name": "Mitch Haniger",
       "team": "Mariners",
-      "brand": "Topps",
+      "brand": "T",
       "position": "Outfield",
       "year": 2021,
       "series": 1,
       "series_number": 149,
-      "single_player": true
+      "cardType": "B",
+      "created": "2021-08-26T16:42:30.166Z"
     },
     {
       "name": "Dylan Bundy",
       "team": "Angels",
-      "brand": "Topps",
+      "brand": "T",
       "position": "Pitcher",
       "year": 2021,
       "series": 1,
       "series_number": 128,
-      "single_player": true
+      "cardType": "B",
+      "created": "2021-08-26T16:42:30.166Z"
     },
     {
       "name": "Nick Senzel",
       "team": "Reds",
-      "brand": "Topps",
+      "brand": "T",
       "position": "Outfield",
       "year": 2021,
       "series": 1,
       "series_number": 55,
-      "single_player": true
+      "cardType": "B",
+      "created": "2021-08-26T16:42:30.166Z"
     },
     {
       "name": "Washington Nationals",
       "team": "Nationals",
-      "brand": "Topps",
+      "brand": "T",
       "position": "N/A",
       "year": 2021,
       "series": 1,
       "series_number": 58,
-      "single_player": false
+      "cardType": "T",
+      "created": "2021-08-26T16:42:30.166Z"
     },
     {
       "name": "Blake Taylor",
       "team": "Astros",
-      "brand": "Topps",
+      "brand": "T",
       "position": "Pitcher",
       "year": 2021,
       "series": 1,
       "series_number": 228,
-      "single_player": true
+      "cardType": "B",
+      "created": "2021-08-26T16:42:30.166Z"
     },
     {
       "name": "Ryan Yarbrough",
       "team": "Rays",
-      "brand": "Topps",
+      "brand": "T",
       "position": "Pitcher",
       "year": 2021,
       "series": 1,
       "series_number": 196,
-      "single_player": true
+      "cardType": "B",
+      "created": "2021-08-26T16:42:30.166Z"
     },
     {
       "name": "Albert Pujols",
       "team": "Angels",
-      "brand": "Topps",
+      "brand": "T",
       "position": "First Base / Designated Hitter",
       "year": 2021,
       "series": 1,
       "series_number": 178,
-      "single_player": true
+      "cardType": "B",
+      "created": "2021-08-26T16:42:30.166Z"
     },
     {
       "name": "Walk-Off Apart",
       "team": "Giants",
-      "brand": "Topps",
+      "brand": "T",
       "position": "",
       "year": 2021,
       "series": 1,
       "series_number": 258,
-      "single_player": false
+      "cardType": "B",
+      "created": "2021-08-26T16:42:30.166Z"
     }
   ]
 }

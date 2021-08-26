@@ -5,6 +5,10 @@
       "year": 2021,
       "types": [
         {
+          "type": "Base",
+          "id": "B"
+        },
+        {
           "type": "Team Card",
           "id": "T"
         },

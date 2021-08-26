@@ -57,6 +57,18 @@ app.get('/brands', (req, res) => {
   });
 });
 
+app.get('/card-types', (req, res) => {
+  r.table('cardTypes').run(req._rdbConn, (err, cursor) => {
+    if (err) throw err;
+
+    cursor.toArray((err, records) => {
+      if (err) throw err;
+
+      res.send(records);
+    });
+  });
+});
+
 // TODO: possible better option with primary key search
 // r.table('authors').get('7644aaf2-9928-4231-aa68-4e65e31bf219').
 //     run(connection, function(err, result) {
@@ -110,11 +122,17 @@ app.post('/new-card', (req, res) => {
       year: parseInt(req.body.year),
       series: parseInt(req.body.series),
       series_number: parseInt(req.body.seriesNumber),
-      single_player: req.body.singlePlayer
+      cardType: req.body.cardType
+      // seriesType: Base, TC, 86B, ...etc
     })
     .run(req._rdbConn, function(err, result) {
       if (err) throw err;
-      console.log(JSON.stringify(result, null, 2));
+
+      if (result.inserted !== 1) {
+        return res.send('ERROR: failed to generate record.');
+      }
+
+      res.send('Success.');
     });
 });
 
