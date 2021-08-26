@@ -69,6 +69,18 @@ app.get('/card-types', (req, res) => {
   });
 });
 
+app.get('/mlb-teams', (req, res) => {
+  r.table('mlbTeams').run(req._rdbConn, (err, cursor) => {
+    if (err) throw err;
+
+    cursor.toArray((err, records) => {
+      if (err) throw err;
+
+      res.send(records);
+    });
+  });
+});
+
 // TODO: possible better option with primary key search
 // r.table('authors').get('7644aaf2-9928-4231-aa68-4e65e31bf219').
 //     run(connection, function(err, result) {

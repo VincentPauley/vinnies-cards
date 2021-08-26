@@ -2,174 +2,210 @@
   "tableName": "mlbTeams",
   "records": [
     {
+      "id": "TB",
       "name": "Rays",
       "location": "Tampa Bays",
       "league": "AL",
       "division": "E"
     },
     {
+      "id": "NYY",
       "name": "Yankees",
       "location": "New York",
       "league": "AL",
       "division": "E"
     },
     {
+      "id": "BOS",
       "name": "Red Sox",
       "location": "Boston",
       "league": "AL",
       "division": "E"
     },
     {
+      "id": "TOR",
       "name": "Blue Jays",
       "location": "Toronto",
       "league": "AL",
       "division": "E"
     },
     {
+      "id": "BAL",
       "name": "Orioles",
       "location": "Baltimore",
       "league": "AL",
       "division": "E"
     },
     {
+      "id": "CWS",
       "name": "White Sox",
       "location": "Chicago",
       "league": "AL",
       "division": "C"
     },
     {
+      "id": "CLE",
       "name": "Indians",
       "location": "Cleveland",
       "league": "AL",
       "division": "C"
     },
     {
+      "id": "DET",
+      "name": "Tigers",
+      "location": "Detroit",
+      "league": "AL",
+      "division": "C"
+    },
+    {
+      "id": "KC",
       "name": "Royals",
       "location": "Kansas City",
       "league": "AL",
       "division": "C"
     },
     {
+      "id": "MIN",
       "name": "Twins",
       "location": "Minnesota",
       "league": "AL",
       "division": "C"
     },
     {
+      "id": "HOU",
       "name": "Astros",
       "location": "Houston",
       "league": "AL",
       "division": "W"
     },
     {
+      "id": "OAK",
       "name": "Athletics",
       "location": "Tampa Bays",
       "league": "AL",
       "division": "W"
     },
     {
+      "id": "SEA",
       "name": "Mariners",
       "location": "Seattle",
       "league": "AL",
       "division": "W"
     },
     {
+      "id": "ANA",
       "name": "Angels",
       "location": "Annaheim",
       "league": "AL",
       "division": "W"
     },
     {
+      "id": "TEX",
       "name": "Rangers",
       "location": "Texas",
       "league": "AL",
       "division": "W"
     },
     {
+      "id": "ATL",
       "name": "Braves",
       "location": "Atlanta",
       "league": "NL",
       "division": "E"
     },
     {
+      "id": "PHI",
       "name": "Phillies",
       "location": "Philadelphia",
       "league": "NL",
       "division": "E"
     },
     {
+      "id": "NYM",
       "name": "Mets",
       "location": "New York",
       "league": "NL",
       "division": "E"
     },
     {
+      "id": "WSH",
       "name": "Nationals",
       "location": "Washington",
       "league": "NL",
       "division": "E"
     },
     {
+      "id": "MIA",
       "name": "Marlins",
       "location": "Miami",
       "league": "NL",
       "division": "E"
     },
     {
+      "id": "MIL",
       "name": "Brewers",
       "location": "Milwuakee",
       "league": "NL",
       "division": "C"
     },
     {
+      "id": "CIN",
       "name": "Reds",
       "location": "Cinncinatti",
       "league": "NL",
       "division": "C"
     },
     {
+      "id": "STL",
       "name": "Cardinals",
       "location": "St Louis",
       "league": "NL",
       "division": "C"
     },
     {
+      "id": "CHI",
       "name": "Cubs",
       "location": "Chicago",
       "league": "NL",
       "division": "C"
     },
     {
+      "id": "PIT",
       "name": "Pirates",
       "location": "Pittsburgh",
       "league": "NL",
       "division": "C"
     },
     {
+      "id": "SF",
       "name": "Giants",
       "location": "San Fransico",
       "league": "NL",
       "division": "W"
     },
     {
+      "id": "LAD",
       "name": "Dodgers",
       "location": "Los Angeles",
       "league": "NL",
       "division": "W"
     },
     {
+      "id": "SD",
       "name": "Padres",
       "location": "San Diego",
       "league": "NL",
       "division": "W"
     },
     {
+      "id": "COL",
       "name": "Rockies",
       "location": "Colorado",
       "league": "NL",
       "division": "W"
     },
     {
+      "id": "ARI",
       "name": "Diamondbacks",
       "location": "Arizona",
       "league": "NL",

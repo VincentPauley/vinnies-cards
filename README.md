@@ -56,12 +56,10 @@ npm run drop
 ### Data
 
 [X] - card type table
-
-    ... individual card record will receive the abbreviation which can be
-      then expanded upon through a DB lookup to match human-readable version
-
+[X] - single player can become typed instead.
+[ ] - configuration sub-route for all attribute data
 [ ] - series type needed
-[ ] - single player can become typed instead.
+[ ] - price acquired
 [ ] - need approved model on the FE to show a card needing update.
 
 ### Features
