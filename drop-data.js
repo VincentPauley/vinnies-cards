@@ -6,20 +6,34 @@ const connectionData = {
   port: process.env.DB_PORT
 };
 
-let connection = null;
+function dropTable(tableName) {
+  let connection = null;
 
-r.connect(connectionData, (err, conn) => {
-  connection = conn;
+  return new Promise((resolve, reject) => {
+    r.connect(connectionData, (err, conn) => {
+      connection = conn;
 
-  r.db('test')
-    .tableDrop('cards')
-    .run(connection, (err, result) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
+      r.db('test')
+        .tableDrop(tableName)
+        .run(connection, (err, result) => {
+          if (err) {
+            reject(err);
+          }
 
-      console.log(result);
-      connection.close();
+          connection.close();
+          resolve(result);
+        });
     });
-});
+  });
+}
+
+(async () => {
+  console.log('=Dropping Tables=');
+  await Promise.all([
+    dropTable('cards'),
+    dropTable('cardTypes'),
+    dropTable('brands')
+  ]);
+  console.log('=All Tables Dropped=');
+  console.log('finished...');
+})();

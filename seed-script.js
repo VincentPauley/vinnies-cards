@@ -8,6 +8,7 @@ const CONNECTION_DATA = {
 
 const { cards } = require('./seed-data/cards.seed.json');
 const { cardTypes } = require('./seed-data/card-types.seed.json');
+const { brands } = require('./seed-data/brands.seed.json');
 
 function createTable(tableName) {
   let connection = null;
@@ -61,14 +62,19 @@ function seedTable(tableName, data) {
 (async () => {
   try {
     // generate tables
-    await Promise.all([createTable('cards'), createTable('cardTypes')]);
+    await Promise.all([
+      createTable('cards'),
+      createTable('cardTypes'),
+      createTable('brands')
+    ]);
 
     console.log('=Tables Created=');
 
     // seed tables
     await Promise.all([
       seedTable('cards', cards),
-      seedTable('cardTypes', cardTypes)
+      seedTable('cardTypes', cardTypes),
+      seedTable('brands', brands)
     ]);
 
     console.log('=Tables Seeded=');

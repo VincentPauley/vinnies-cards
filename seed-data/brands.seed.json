@@ -1,0 +1,12 @@
+{
+  "brands": [
+    {
+      "name": "Topps",
+      "id": "T"
+    },
+    {
+      "name": "Upper Deck",
+      "id": "UD"
+    }
+  ]
+}
