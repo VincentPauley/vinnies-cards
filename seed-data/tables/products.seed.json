@@ -1,0 +1,11 @@
+{
+  "tableName": "products",
+  "records": [
+    {
+      "brand": "T",
+      "product": "baseball",
+      "printYear": 2021,
+      "series": [1, 2]
+    }
+  ]
+}

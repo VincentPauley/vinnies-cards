@@ -1,6 +1,10 @@
-const brands = require('./brands.seed.json');
-const cardTypes = require('./card-types.seed.json');
-const cards = require('./cards.seed.json');
-const mlbTeams = require('./mlb-teams.seed.json');
+const tableDir = './tables';
+const ext = '.seed.json';
 
-module.exports = [brands, cardTypes, cards, mlbTeams];
+const brands = require(`${tableDir}/brands${ext}`);
+const products = require(`${tableDir}/products${ext}`);
+const cardTypes = require(`${tableDir}/card-types${ext}`);
+const cards = require(`${tableDir}/cards${ext}`);
+const mlbTeams = require(`${tableDir}/mlb-teams${ext}`);
+
+module.exports = [brands, products, cardTypes, cards, mlbTeams];

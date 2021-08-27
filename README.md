@@ -59,8 +59,9 @@ npm run drop
 [X] - card type table
 [X] - single player can become typed instead.
 
-[ ] - series type needed
+[ ] - series type needed (in data just need in from)
 ... which can join to brand/year/product(mlb... etc)
+[ ] - available years for brand/product is one of the last pieces
 [ ] - price acquired
 [ ] - need approved model on the FE to show a card needing update.
 
