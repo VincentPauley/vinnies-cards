@@ -1,5 +1,10 @@
 <template>
   <li class="card">
+    <ProductSet
+      :brand="cardData.product_set.brand"
+      :print-year="printYear"
+      :series="cardData.product_set.series"
+    />
     <h3>
       {{ cardData.name }}
       <span v-if="cardData.single_player">{{ cardData.position }}</span>
@@ -34,10 +39,12 @@ h3 span {
 </style>
 
 <script>
+import ProductSet from "./ProductSet.vue";
 import CardIssue from "./CardIssue.vue";
 
 export default {
   components: {
+    ProductSet,
     CardIssue
   },
   props: {
@@ -53,6 +60,9 @@ export default {
         return this.cardData.series.is;
       }
       return this.cardData.series;
+    },
+    printYear() {
+      return this.cardData.product_set.print_year;
     },
     inspectLink() {
       return `/inspect-card/${this.cardData.id}`;

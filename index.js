@@ -123,6 +123,13 @@ app.get('/find-by-id/:id', (req, res) => {
 });
 
 app.post('/new-card', (req, res) => {
+  if (typeof req.body.printYear !== 'number') {
+    return res.status(400).json({
+      success: false,
+      message: 'param: "printYear" must be a number'
+    });
+  }
+
   r.table('cards')
     .insert({
       id: uniqid(),
@@ -131,10 +138,15 @@ app.post('/new-card', (req, res) => {
       team: req.body.team,
       brand: req.body.brand,
       position: req.body.position,
-      year: parseInt(req.body.year),
+      year: parseInt(req.body.printYear),
       series: parseInt(req.body.series),
       series_number: parseInt(req.body.seriesNumber),
-      cardType: req.body.cardType
+      cardType: req.body.cardType,
+      product_set: {
+        brand: req.body.brand,
+        print_year: req.body.printYear,
+        series: parseInt(req.body.series)
+      }
       // seriesType: Base, TC, 86B, ...etc
     })
     .run(req._rdbConn, function(err, result) {

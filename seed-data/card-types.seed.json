@@ -4,6 +4,7 @@
     {
       "brand": "Topps",
       "year": 2021,
+      "product": "baseball",
       "types": [
         {
           "type": "Base",
@@ -32,6 +33,30 @@
         {
           "type": "World Series Highlights",
           "id": "WSH"
+        }
+      ],
+      "seriesTypes": [
+        {
+          "type": "Base",
+          "id": "B"
+        },
+        {
+          "type": "Chrome",
+          "id": "TC"
+        },
+        {
+          "type": "1986",
+          "id": "86B"
+        }
+      ],
+      "variations": [
+        {
+          "type": "Gold",
+          "id": "G"
+        },
+        {
+          "type": "Rainbow Foil",
+          "id": "RF"
         }
       ]
     }

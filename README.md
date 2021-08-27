@@ -44,27 +44,31 @@ npm run drop
 
 ### Bugs
 
-[ ] - possible issue involving duplicate create?
+[X] - possible issue involving duplicate create?
 
 ### Technical
 
-[ ] - API file
+[X] - API file
 [ ] - env file for FE
 [ ] - async/await setup
 [ ] - unit testing
+[ ] - configuration sub-route for all attribute data
 
 ### Data
 
 [X] - card type table
 [X] - single player can become typed instead.
-[ ] - configuration sub-route for all attribute data
+
 [ ] - series type needed
+... which can join to brand/year/product(mlb... etc)
 [ ] - price acquired
 [ ] - need approved model on the FE to show a card needing update.
 
 ### Features
 
+[ ] - brand name translated on FE
 [ ] - for card add - card type should be enabled only after brand & year
+[ ] - persist values for brand/year/series accross multiple cards
 [ ] - gui for creating brand/year type details
 
 [ ] - separate table for brands

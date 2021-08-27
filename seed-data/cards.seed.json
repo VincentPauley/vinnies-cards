@@ -10,7 +10,12 @@
       "series": 1,
       "series_number": 2,
       "cardType": "B",
-      "created": "2021-08-26T16:42:30.166Z"
+      "created": "2021-08-26T16:42:30.166Z",
+      "product_set": {
+        "brand": "T",
+        "print_year": 2021,
+        "series": 1
+      }
     },
     {
       "name": "Mitch Haniger",
@@ -21,7 +26,12 @@
       "series": 1,
       "series_number": 149,
       "cardType": "B",
-      "created": "2021-08-26T16:42:30.166Z"
+      "created": "2021-08-26T16:42:30.166Z",
+      "product_set": {
+        "brand": "T",
+        "print_year": 2021,
+        "series": 1
+      }
     },
     {
       "name": "Dylan Bundy",
@@ -32,7 +42,12 @@
       "series": 1,
       "series_number": 128,
       "cardType": "B",
-      "created": "2021-08-26T16:42:30.166Z"
+      "created": "2021-08-26T16:42:30.166Z",
+      "product_set": {
+        "brand": "T",
+        "print_year": 2021,
+        "series": 1
+      }
     },
     {
       "name": "Nick Senzel",
@@ -43,7 +58,12 @@
       "series": 1,
       "series_number": 55,
       "cardType": "B",
-      "created": "2021-08-26T16:42:30.166Z"
+      "created": "2021-08-26T16:42:30.166Z",
+      "product_set": {
+        "brand": "T",
+        "print_year": 2021,
+        "series": 1
+      }
     },
     {
       "name": "Washington Nationals",
@@ -54,7 +74,12 @@
       "series": 1,
       "series_number": 58,
       "cardType": "T",
-      "created": "2021-08-26T16:42:30.166Z"
+      "created": "2021-08-26T16:42:30.166Z",
+      "product_set": {
+        "brand": "T",
+        "print_year": 2021,
+        "series": 1
+      }
     },
     {
       "name": "Blake Taylor",
@@ -65,7 +90,12 @@
       "series": 1,
       "series_number": 228,
       "cardType": "B",
-      "created": "2021-08-26T16:42:30.166Z"
+      "created": "2021-08-26T16:42:30.166Z",
+      "product_set": {
+        "brand": "T",
+        "print_year": 2021,
+        "series": 1
+      }
     },
     {
       "name": "Ryan Yarbrough",
@@ -76,7 +106,12 @@
       "series": 1,
       "series_number": 196,
       "cardType": "B",
-      "created": "2021-08-26T16:42:30.166Z"
+      "created": "2021-08-26T16:42:30.166Z",
+      "product_set": {
+        "brand": "T",
+        "print_year": 2021,
+        "series": 1
+      }
     },
     {
       "name": "Albert Pujols",
@@ -87,7 +122,12 @@
       "series": 1,
       "series_number": 178,
       "cardType": "B",
-      "created": "2021-08-26T16:42:30.166Z"
+      "created": "2021-08-26T16:42:30.166Z",
+      "product_set": {
+        "brand": "T",
+        "print_year": 2021,
+        "series": 1
+      }
     },
     {
       "name": "Walk-Off Apart",
@@ -98,7 +138,12 @@
       "series": 1,
       "series_number": 258,
       "cardType": "B",
-      "created": "2021-08-26T16:42:30.166Z"
+      "created": "2021-08-26T16:42:30.166Z",
+      "product_set": {
+        "brand": "T",
+        "print_year": 2021,
+        "series": 1
+      }
     }
   ]
 }

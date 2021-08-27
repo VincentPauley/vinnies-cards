@@ -1,7 +1,7 @@
 <template>
   <div v-if="brandOptionsAvailable && cardTypeOptionsAvailable && teamOptionsAvailable">
     <h1>Add Card</h1>
-    <p>This Vuelidate form will help you add a card record with all required fields.</p>
+    <p>Add cards to collection using this dynamic form.</p>
     <form>
       <div>
         <label for="brand">Brand</label>
@@ -12,12 +12,17 @@
         <b v-if="!valid.brand">INVALID</b>
       </div>
       <div>
-        <label for="year">Year</label>
-        <input id="year" type="number" v-model="cardModel.year" @keyup="validateYear">
-        <b v-if="!valid.year">INVALID</b>
+        <label for="print-year">Print Year</label>
+        <input
+          id="print-year"
+          type="number"
+          v-model="cardModel.printYear"
+          @keyup="validatePrintYear"
+        >
+        <b v-if="!valid.printYear">INVALID</b>
       </div>
 
-      <div v-if="valid.brand && valid.year">
+      <div v-if="valid.brand && valid.printYear">
         <div>
           <label for="series">Series</label>
           <input id="series" type="number" v-model="cardModel.series" @keyup="validateSeries">
@@ -102,7 +107,7 @@ export default {
     teamOptions: null,
     cardModel: {
       brand: "SELECT",
-      year: null,
+      printYear: null,
       name: "",
       cardType: null,
       team: "SELECT",
@@ -115,7 +120,7 @@ export default {
       team: false,
       brand: false,
       position: false,
-      year: false,
+      printYear: false,
       series: false,
       seriesNumber: false
     }
@@ -218,8 +223,9 @@ export default {
     validatePosition() {
       this.valid.position = this.cardModel.position !== "SELECT";
     },
-    validateYear() {
-      this.valid.year = /\d{4}/.test(this.cardModel.year);
+    validatePrintYear() {
+      this.cardModel.printYear = parseInt(this.cardModel.printYear);
+      this.valid.printYear = /\d{4}/.test(this.cardModel.printYear);
     },
     validateSeries() {
       this.valid.series = /^\d{1,2}$/.test(this.cardModel.series);
@@ -227,15 +233,21 @@ export default {
     validateSeriesNumber() {
       this.valid.seriesNumber = /^\d{1,3}$/.test(this.cardModel.seriesNumber);
     },
-    submit() {
-      axios
-        .post("http://localhost:3000/new-card", this.cardModel)
-        .then(r => {
-          console.log("r: ", r);
-        })
-        .catch(e => {
-          console.log("e: ", e);
-        });
+    async submit() {
+      try {
+        const newCardResult = await axios.post(
+          "http://localhost:3000/new-card",
+          this.cardModel
+        );
+
+        if (newCardResult.status !== 200) {
+          throw new Error("something bad happened");
+        }
+
+        console.log(newCardResult);
+      } catch (e) {
+        alert(e);
+      }
     }
   }
 };
