@@ -29,6 +29,7 @@ function dropTable(tableName) {
 
 (async () => {
   console.log('=Dropping Tables=');
+  // TODO: make this list dynamic
   await Promise.all([
     dropTable('cards'),
     dropTable('products'),

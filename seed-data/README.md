@@ -6,6 +6,19 @@ this is starting data for developing the app.
 The goal of these tables and their relationships is to create a dynamic model that
 would work for any type of Sports/Trading Card
 
+## Creating New Table
+
+- Only file you need to add is your json file in ./tables
+- filename technically doesn't matter, but convetion asks that it ends in .seed.json
+- format required in file:
+
+```json
+{
+  "talbeName": "<TABLE NAME>",
+  "records": ["<AS MANY ROWS OF DATA AS YOU WANT>"]
+}
+```
+
 ## Table Overviews
 
 ### brands

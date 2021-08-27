@@ -1,10 +1,10 @@
-const tableDir = './tables';
-const ext = '.seed.json';
+const fs = require('fs');
+const tableDir = '/tables';
 
-const brands = require(`${tableDir}/brands${ext}`);
-const products = require(`${tableDir}/products${ext}`);
-const cardTypes = require(`${tableDir}/card-types${ext}`);
-const cards = require(`${tableDir}/cards${ext}`);
-const mlbTeams = require(`${tableDir}/mlb-teams${ext}`);
+// get all datafile relative paths
+const dataFiles = fs
+  .readdirSync(__dirname + tableDir)
+  .map(f => `./${tableDir}/${f}`);
 
-module.exports = [brands, products, cardTypes, cards, mlbTeams];
+// export all datafiles
+module.exports = dataFiles.map(dataFile => require(dataFile));
