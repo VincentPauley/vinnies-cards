@@ -57,16 +57,42 @@ app.get('/brands', (req, res) => {
   });
 });
 
-app.get('/card-types', (req, res) => {
-  r.table('cardTypes').run(req._rdbConn, (err, cursor) => {
-    if (err) throw err;
+// `/card-types/brand/${brand}/print-year/${printYear}`
+app.get('/card-types/brand/:brand/print-year/:printYear', (req, res) => {
+  const { brand, printYear } = req.params;
 
-    cursor.toArray((err, records) => {
+  r.table('cardTypes')
+    .filter(r.row('brand').eq(brand))
+    .filter(r.row('year').eq(parseInt(printYear)))
+    .run(req._rdbConn, (err, cursor) => {
       if (err) throw err;
 
-      res.send(records);
+      cursor.toArray((err, records) => {
+        if (err) throw err;
+
+        if (records.length < 1) {
+          return res.status(400).json({
+            success: false,
+            message: `could not find card type record for brand: ${brand} and year: ${printYear}`
+          });
+        }
+
+        if (records.length > 1) {
+          return res.status(400).json({
+            success: false,
+            message: `check database, found more than 1 card type record for brand: ${brand} and year: ${printYear}`
+          });
+        }
+
+        const { types, seriesTypes, variations } = records[0];
+
+        res.send({
+          types,
+          seriesTypes,
+          variations
+        });
+      });
     });
-  });
 });
 
 app.get('/mlb-teams', (req, res) => {

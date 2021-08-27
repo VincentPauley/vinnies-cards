@@ -2,7 +2,7 @@
   "tableName": "cardTypes",
   "records": [
     {
-      "brand": "Topps",
+      "brand": "T",
       "year": 2021,
       "product": "baseball",
       "types": [

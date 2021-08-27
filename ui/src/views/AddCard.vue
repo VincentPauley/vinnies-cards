@@ -1,5 +1,5 @@
 <template>
-  <div v-if="brandOptionsAvailable && cardTypeOptionsAvailable && teamOptionsAvailable">
+  <div v-if="brandOptionsAvailable && teamOptionsAvailable">
     <h1>Add Card</h1>
     <p>Add cards to collection using this dynamic form.</p>
     <form>
@@ -89,6 +89,8 @@
             :value="cardType.id"
           >{{ cardType.type }}</option>
         </select>
+        {{seriesTypeOptions}}
+        {{variationOptions}}
       </div>
       <button type="submit" :disabled="!allValid" @click.prevent="submit">Submit</button>
     </form>
@@ -105,6 +107,8 @@ export default {
     brandOptions: null,
     cardTypeOptions: null,
     teamOptions: null,
+    seriesTypeOptions: null,
+    variationOptions: null,
     cardModel: {
       brand: "SELECT",
       printYear: null,
@@ -126,6 +130,16 @@ export default {
     }
   }),
   computed: {
+    /**
+     * @computed baseInfoSet
+     *
+     * Once brand and year are set, more information about the
+     * cards attributes can be looked up to generate form inputs.
+     *
+     */
+    baseInfoSet() {
+      return this.valid.brand && this.valid.printYear;
+    },
     brandOptionsAvailable() {
       return Array.isArray(this.brandOptions);
     },
@@ -152,9 +166,15 @@ export default {
       return allValid;
     }
   },
+  watch: {
+    baseInfoSet(baseInfoValid) {
+      if (baseInfoValid) {
+        this.retrieveCardTypes();
+      }
+    }
+  },
   async created() {
     this.retrieveBrands();
-    this.retrieveCardTypes();
     this.retrieveMlbTeams();
   },
   methods: {
@@ -175,7 +195,9 @@ export default {
     },
     async retrieveCardTypes() {
       try {
-        const cardTypeResponse = await api.get("/card-types");
+        const { brand, printYear } = this.cardModel;
+        const endpoint = `/card-types/brand/${brand}/print-year/${printYear}`;
+        const cardTypeResponse = await api.get(endpoint);
 
         if (cardTypeResponse.status !== 200) {
           throw new Error(
@@ -186,9 +208,17 @@ export default {
         }
 
         // TODO: this group used should be looked up based on the brand/year dynamically
-        this.cardTypeOptions = cardTypeResponse.data[0].types;
+        // this.cardTypeOptions = cardTypeResponse.data[0].types;
         // first option should be assumed the default option
-        this.cardModel.type = cardTypeResponse.data[0].types[0].id;
+        // this.cardModel.type = cardTypeResponse.data[0].types[0].id;
+
+        const { types, seriesTypes, variations } = cardTypeResponse.data;
+
+        this.cardTypeOptions = types;
+        this.seriesTypeOptions = seriesTypes;
+        this.variationOptions = variations;
+
+        console.log("Check Full: ", cardTypeResponse.data);
       } catch (e) {
         console.error(e);
       }
