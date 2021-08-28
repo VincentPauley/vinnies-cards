@@ -1,7 +1,7 @@
 <template>
   <div class="product-set">
     <p>
-      <b>{{ brand }} {{ printYear }}</b>
+      <b>{{ brand }} {{ product }} {{ printYear }}</b>
       Series: {{ series }}
     </p>
   </div>
@@ -18,6 +18,10 @@
 export default {
   props: {
     brand: {
+      type: String,
+      required: true
+    },
+    product: {
       type: String,
       required: true
     },

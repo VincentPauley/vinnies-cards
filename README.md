@@ -64,6 +64,7 @@ npm run drop
 [ ] - available years for brand/product is one of the last pieces
 [ ] - price acquired
 [ ] - need approved model on the FE to show a card needing update.
+[ ] - team and position data needs to be retrieved once known that it's a baseball product
 
 ### Features
 

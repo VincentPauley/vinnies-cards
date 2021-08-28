@@ -57,7 +57,36 @@ app.get('/brands', (req, res) => {
   });
 });
 
-// `/card-types/brand/${brand}/print-year/${printYear}`
+app.get('/products/brand/:brand', (req, res) => {
+  r.table('products')
+    .filter(r.row('brand').eq(req.params.brand))
+    .run(req._rdbConn, (err, cursor) => {
+      if (err) throw err;
+
+      cursor.toArray((err, records) => {
+        if (err) throw err;
+
+        if (records.length < 1) {
+          return res.status(400).json({
+            success: false,
+            message: `could not find products record for brand: ${brand}`
+          });
+        }
+
+        if (records.length < 1) {
+          return res.status(400).json({
+            success: false,
+            message: `check database, found more than 1 products record for brand: ${brand}`
+          });
+        }
+
+        const { products } = records[0];
+
+        res.json({ products, success: true });
+      });
+    });
+});
+
 app.get('/card-types/brand/:brand/print-year/:printYear', (req, res) => {
   const { brand, printYear } = req.params;
 
@@ -170,6 +199,7 @@ app.post('/new-card', (req, res) => {
       cardType: req.body.cardType,
       product_set: {
         brand: req.body.brand,
+        product: req.body.product,
         print_year: req.body.printYear,
         series: parseInt(req.body.series)
       }

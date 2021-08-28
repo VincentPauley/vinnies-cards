@@ -2,6 +2,7 @@
   <li class="card">
     <ProductSet
       :brand="cardData.product_set.brand"
+      :product="cardData.product_set.product"
       :print-year="printYear"
       :series="cardData.product_set.series"
     />
@@ -17,12 +18,6 @@
       <!-- <button @click="inspectCard">Inspect</button> -->
       <router-link :to="inspectLink">Inspect</router-link>
     </div>
-    <CardIssue
-      :brand="cardData.brand"
-      :year="cardData.year"
-      :series="series"
-      :series-number="cardData.series_number"
-    />
   </li>
 </template>
 
@@ -40,12 +35,10 @@ h3 span {
 
 <script>
 import ProductSet from "./ProductSet.vue";
-import CardIssue from "./CardIssue.vue";
 
 export default {
   components: {
-    ProductSet,
-    CardIssue
+    ProductSet
   },
   props: {
     cardData: {

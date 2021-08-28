@@ -11,6 +11,15 @@
         </select>
         <b v-if="!valid.brand">INVALID</b>
       </div>
+
+      <div v-if="productOptionsAvailable">
+        <label for="product">Product</label>
+        <select id="product" v-model="cardModel.product" @change="validateProduct">
+          <option value="SELECT">SELECT</option>
+          <option v-for="product in productOptions" :key="product" :value="product">{{ product }}</option>
+        </select>
+      </div>
+
       <div>
         <label for="print-year">Print Year</label>
         <input
@@ -101,6 +110,7 @@
 import axios from "axios";
 
 import api from "@/api/index.js";
+import products from "@/api/calls/products";
 
 export default {
   data: () => ({
@@ -109,8 +119,10 @@ export default {
     teamOptions: null,
     seriesTypeOptions: null,
     variationOptions: null,
+    productOptions: null,
     cardModel: {
       brand: "SELECT",
+      product: "SELECT",
       printYear: null,
       name: "",
       cardType: null,
@@ -120,9 +132,10 @@ export default {
       seriesNumber: null
     },
     valid: {
+      brand: false,
+      product: false,
       name: false,
       team: false,
-      brand: false,
       position: false,
       printYear: false,
       series: false,
@@ -130,18 +143,25 @@ export default {
     }
   }),
   computed: {
+    brandValid() {
+      return this.valid.brand;
+    },
     /**
      * @computed baseInfoSet
      *
      * Once brand and year are set, more information about the
      * cards attributes can be looked up to generate form inputs.
      *
+     * TODO: need to edit contents here
      */
     baseInfoSet() {
       return this.valid.brand && this.valid.printYear;
     },
     brandOptionsAvailable() {
       return Array.isArray(this.brandOptions);
+    },
+    productOptionsAvailable() {
+      return Array.isArray(this.productOptions);
     },
     cardTypeOptionsAvailable() {
       return Array.isArray(this.cardTypeOptions);
@@ -167,9 +187,9 @@ export default {
     }
   },
   watch: {
-    baseInfoSet(baseInfoValid) {
-      if (baseInfoValid) {
-        this.retrieveCardTypes();
+    brandValid(valid) {
+      if (valid) {
+        this.retrieveProducts();
       }
     }
   },
@@ -192,6 +212,14 @@ export default {
       } catch (e) {
         console.error(e);
       }
+    },
+    async retrieveProducts() {
+      console.log("called: retrieveProducts()");
+      const productResponse = await products.getProductsForBrand(
+        this.cardModel.brand
+      );
+
+      this.productOptions = productResponse.data.products;
     },
     async retrieveCardTypes() {
       try {
@@ -241,14 +269,17 @@ export default {
       }
     },
     // validators
+    validateBrand() {
+      this.valid.brand = this.cardModel.brand !== "SELECT";
+    },
+    validateProduct() {
+      this.valid.product = this.cardModel.brand !== "SELECT";
+    },
     validateName() {
       this.valid.name = /\w{5,}/i.test(this.cardModel.name);
     },
     validateTeam() {
       this.valid.team = this.cardModel.team !== "SELECT";
-    },
-    validateBrand() {
-      this.valid.brand = this.cardModel.brand !== "SELECT";
     },
     validatePosition() {
       this.valid.position = this.cardModel.position !== "SELECT";

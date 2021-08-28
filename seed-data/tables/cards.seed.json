@@ -4,15 +4,13 @@
     {
       "name": "Roberto Osuna",
       "team": "Astros",
-      "brand": "T",
       "position": "Pitcher",
-      "year": 2021,
-      "series": 1,
       "series_number": 2,
       "cardType": "B",
       "created": "2021-08-26T16:42:30.166Z",
       "product_set": {
         "brand": "T",
+        "product": "baseball",
         "print_year": 2021,
         "series": 1
       }
@@ -20,15 +18,13 @@
     {
       "name": "Mitch Haniger",
       "team": "Mariners",
-      "brand": "T",
       "position": "Outfield",
-      "year": 2021,
-      "series": 1,
       "series_number": 149,
       "cardType": "B",
       "created": "2021-08-26T16:42:30.166Z",
       "product_set": {
         "brand": "T",
+        "product": "baseball",
         "print_year": 2021,
         "series": 1
       }
@@ -36,15 +32,13 @@
     {
       "name": "Dylan Bundy",
       "team": "Angels",
-      "brand": "T",
       "position": "Pitcher",
-      "year": 2021,
-      "series": 1,
       "series_number": 128,
       "cardType": "B",
       "created": "2021-08-26T16:42:30.166Z",
       "product_set": {
         "brand": "T",
+        "product": "baseball",
         "print_year": 2021,
         "series": 1
       }
@@ -52,15 +46,13 @@
     {
       "name": "Nick Senzel",
       "team": "Reds",
-      "brand": "T",
       "position": "Outfield",
-      "year": 2021,
-      "series": 1,
       "series_number": 55,
       "cardType": "B",
       "created": "2021-08-26T16:42:30.166Z",
       "product_set": {
         "brand": "T",
+        "product": "baseball",
         "print_year": 2021,
         "series": 1
       }
@@ -68,15 +60,13 @@
     {
       "name": "Washington Nationals",
       "team": "Nationals",
-      "brand": "T",
       "position": "N/A",
-      "year": 2021,
-      "series": 1,
       "series_number": 58,
       "cardType": "T",
       "created": "2021-08-26T16:42:30.166Z",
       "product_set": {
         "brand": "T",
+        "product": "baseball",
         "print_year": 2021,
         "series": 1
       }
@@ -84,15 +74,13 @@
     {
       "name": "Blake Taylor",
       "team": "Astros",
-      "brand": "T",
       "position": "Pitcher",
-      "year": 2021,
-      "series": 1,
       "series_number": 228,
       "cardType": "B",
       "created": "2021-08-26T16:42:30.166Z",
       "product_set": {
         "brand": "T",
+        "product": "baseball",
         "print_year": 2021,
         "series": 1
       }
@@ -100,15 +88,13 @@
     {
       "name": "Ryan Yarbrough",
       "team": "Rays",
-      "brand": "T",
       "position": "Pitcher",
-      "year": 2021,
-      "series": 1,
       "series_number": 196,
       "cardType": "B",
       "created": "2021-08-26T16:42:30.166Z",
       "product_set": {
         "brand": "T",
+        "product": "baseball",
         "print_year": 2021,
         "series": 1
       }
@@ -116,15 +102,13 @@
     {
       "name": "Albert Pujols",
       "team": "Angels",
-      "brand": "T",
       "position": "First Base / Designated Hitter",
-      "year": 2021,
-      "series": 1,
       "series_number": 178,
       "cardType": "B",
       "created": "2021-08-26T16:42:30.166Z",
       "product_set": {
         "brand": "T",
+        "product": "baseball",
         "print_year": 2021,
         "series": 1
       }
@@ -132,15 +116,13 @@
     {
       "name": "Walk-Off Apart",
       "team": "Giants",
-      "brand": "T",
       "position": "",
-      "year": 2021,
-      "series": 1,
       "series_number": 258,
       "cardType": "B",
       "created": "2021-08-26T16:42:30.166Z",
       "product_set": {
         "brand": "T",
+        "product": "baseball",
         "print_year": 2021,
         "series": 1
       }
