@@ -110,6 +110,7 @@
 import axios from "axios";
 
 import api from "@/api/index.js";
+import brands from "@/api/calls/brands";
 import products from "@/api/calls/products";
 
 export default {
@@ -200,16 +201,17 @@ export default {
   methods: {
     async retrieveBrands() {
       try {
-        const brandResponse = await api.get("/brands");
+        const brandResponse = await brands.getBrands();
 
-        if (brandResponse.status !== 200) {
+        if (brandResponse.status !== 200 || !brandResponse.data.success) {
           throw new Error(
             `improper resonse code for GET /brands: ${brandResponse.status}`
           );
         }
 
-        this.brandOptions = brandResponse.data;
+        this.brandOptions = brandResponse.data.brands;
       } catch (e) {
+        console.log("--catching error--");
         console.error(e);
       }
     },

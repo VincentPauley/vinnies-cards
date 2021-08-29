@@ -24,6 +24,16 @@ function closeConnection(req, res, next) {
   req._rdbConn.close();
 }
 
+function retrieveFullTableRecords(conn, table) {
+  return new Promise((resolve, reject) => {
+    r.table(table)
+      .run(conn)
+      .then(cursor => cursor.toArray())
+      .then(r => resolve(r))
+      .catch(e => reject(e));
+  });
+}
+
 app.use(cors());
 // Body-parser middleware
 app.use(bodyparser.urlencoded({ extended: false }));
@@ -45,8 +55,26 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/brands', (req, res) => {
-  r.table('brands').run(req._rdbConn, (err, cursor) => {
+app.get('/brands', async (req, res) => {
+  try {
+    const brandData = await retrieveFullTableRecords(req._rdbConn, 'brands');
+
+    res.status(200).json({
+      success: true,
+      brands: brandData
+    });
+  } catch (e) {
+    console.error(e); // < TODO: need more legit error handling
+
+    res.status(500).json({
+      success: false,
+      message: 'failed to retrieve brand data'
+    });
+  }
+});
+
+app.get('/mlb-teams', (req, res) => {
+  r.table('mlbTeams').run(req._rdbConn, (err, cursor) => {
     if (err) throw err;
 
     cursor.toArray((err, records) => {
@@ -122,18 +150,6 @@ app.get('/card-types/brand/:brand/print-year/:printYear', (req, res) => {
         });
       });
     });
-});
-
-app.get('/mlb-teams', (req, res) => {
-  r.table('mlbTeams').run(req._rdbConn, (err, cursor) => {
-    if (err) throw err;
-
-    cursor.toArray((err, records) => {
-      if (err) throw err;
-
-      res.send(records);
-    });
-  });
 });
 
 // TODO: possible better option with primary key search
