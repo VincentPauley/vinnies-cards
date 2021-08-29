@@ -8,6 +8,10 @@
     {
       "name": "Upper Deck",
       "id": "UD"
+    },
+    {
+      "name": "Panini",
+      "id": "P"
     }
   ]
 }

@@ -7,7 +7,8 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "seed": "node seed-script.js",
-    "drop": "node drop-data.js"
+    "drop": "node drop-data.js",
+    "db-update": "npm run drop && npm run seed"
   },
   "repository": {
     "type": "git",
