@@ -20,6 +20,8 @@
         </select>
       </div>
 
+      <p>{{ printYearOptions }}</p>
+
       <div>
         <label for="print-year">Print Year</label>
         <input
@@ -112,15 +114,17 @@ import axios from "axios";
 import api from "@/api/index.js";
 import brands from "@/api/calls/brands";
 import products from "@/api/calls/products";
+import supportedYears from "@/api/calls/supported-years";
 
 export default {
   data: () => ({
     brandOptions: null,
+    productOptions: null,
+    printYearOptions: null,
     cardTypeOptions: null,
     teamOptions: null,
     seriesTypeOptions: null,
     variationOptions: null,
-    productOptions: null,
     cardModel: {
       brand: "SELECT",
       product: "SELECT",
@@ -146,6 +150,9 @@ export default {
   computed: {
     brandValid() {
       return this.valid.brand;
+    },
+    productValid() {
+      return this.valid.product;
     },
     /**
      * @computed baseInfoSet
@@ -192,6 +199,11 @@ export default {
       if (valid) {
         this.retrieveProducts();
       }
+    },
+    productValid(valid) {
+      if (valid) {
+        this.retrieveSupportedYears();
+      }
     }
   },
   async created() {
@@ -216,12 +228,23 @@ export default {
       }
     },
     async retrieveProducts() {
-      console.log("called: retrieveProducts()");
       const productResponse = await products.getProductsForBrand(
         this.cardModel.brand
       );
 
       this.productOptions = productResponse.data.products;
+    },
+    async retrieveSupportedYears() {
+      try {
+        const availableYears = await supportedYears.getProductYearsSupported(
+          this.cardModel.brand,
+          this.cardModel.product
+        );
+
+        this.printYearOptions = availableYears.data.years;
+      } catch (e) {
+        console.log("e", e);
+      }
     },
     async retrieveCardTypes() {
       try {

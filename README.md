@@ -49,8 +49,8 @@ npm run drop
 ### Technical
 
 [X] - API file
+[X] - async/await setup
 [ ] - env file for FE
-[ ] - async/await setup
 [ ] - unit testing
 [ ] - configuration sub-route for all attribute data
 
@@ -64,7 +64,7 @@ npm run drop
 [ ] - available years for brand/product is one of the last pieces
 [ ] - price acquired
 [ ] - need approved model on the FE to show a card needing update.
-[ ] - team and position data needs to be retrieved once known that it's a baseball product
+[ ] - !!! - team and position data needs to be retrieved once known that it's a baseball product - product data needs a way to reference auxillary data on demand
 
 ### Features
 

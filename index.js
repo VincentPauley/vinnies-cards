@@ -73,6 +73,7 @@ app.get('/brands', async (req, res) => {
   }
 });
 
+// TODO: use: retrieveFullTableRecords
 app.get('/mlb-teams', (req, res) => {
   r.table('mlbTeams').run(req._rdbConn, (err, cursor) => {
     if (err) throw err;
@@ -111,6 +112,25 @@ app.get('/products/brand/:brand', (req, res) => {
         const { products } = records[0];
 
         res.json({ products, success: true });
+      });
+    });
+});
+
+// provide brand & product
+// get associated years available
+
+app.get('/supported-years/brand/:brand/product/:product', (req, res) => {
+  const { brand, product } = req.params;
+
+  r.table('productPrintYears')
+    .filter(r.row('brand').eq(brand))
+    .filter(r.row('product').eq(product))
+    .run(req._rdbConn, (err, cursor) => {
+      cursor.toArray((err, records) => {
+        res.status(200).json({
+          success: true,
+          years: records[0].printYears
+        });
       });
     });
 });
