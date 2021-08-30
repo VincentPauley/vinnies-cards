@@ -14,7 +14,7 @@
 <style lang="css">
 .radio-wrapper {
   /* border: 1px solid blue; */
-  margin: 0.5rem;
+  margin: 0.5rem 0;
 }
 .radio-wrapper input {
   display: none;

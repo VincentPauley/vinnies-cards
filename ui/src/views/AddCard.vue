@@ -1,7 +1,7 @@
 <template>
   <div v-if="brandOptionsAvailable && teamOptionsAvailable">
     <h1>Add Card</h1>
-    <p>Add cards to collection using this dynamic form.</p>
+    <p>Add cards to collection using this dynamicd form.</p>
     <form>
       <div>
         <label for="brand">Brand</label>
@@ -20,21 +20,13 @@
         </select>
       </div>
 
-      <p>{{ printYearOptions }}</p>
       <SelectFromList
+        v-if="printYearOptionsAvailable"
+        label="Print Year"
         name="print-year"
-        :options="[{ name: 'One', value: 1 },{ name: 'Two', value: 2 }]"
+        :options="printYearListOptions"
+        @selection="printYearSelected"
       />
-      <div>
-        <label for="print-year">Print Year</label>
-        <input
-          id="print-year"
-          type="number"
-          v-model="cardModel.printYear"
-          @keyup="validatePrintYear"
-        >
-        <b v-if="!valid.printYear">INVALID</b>
-      </div>
 
       <div v-if="valid.brand && valid.printYear">
         <div>
@@ -187,6 +179,20 @@ export default {
     teamOptionsAvailable() {
       return Array.isArray(this.teamOptions);
     },
+    printYearOptionsAvailable() {
+      return Array.isArray(this.printYearListOptions);
+    },
+    // need to extend the format here in order to have valid content
+    printYearListOptions() {
+      if (!Array.isArray(this.printYearOptions)) {
+        return null;
+      }
+
+      return this.printYearOptions.map(printYear => ({
+        name: printYear.toString(),
+        value: printYear
+      }));
+    },
     allValid() {
       let allValid = true;
 
@@ -256,6 +262,10 @@ export default {
         console.log("e", e);
       }
     },
+    printYearSelected(year) {
+      this.cardModel.printYear = year;
+      this.validatePrintYear();
+    },
     async retrieveCardTypes() {
       try {
         const { brand, printYear } = this.cardModel;
@@ -320,7 +330,7 @@ export default {
       this.valid.position = this.cardModel.position !== "SELECT";
     },
     validatePrintYear() {
-      this.cardModel.printYear = parseInt(this.cardModel.printYear);
+      // this.cardModel.printYear = parseInt(this.cardModel.printYear);
       this.valid.printYear = /\d{4}/.test(this.cardModel.printYear);
     },
     validateSeries() {

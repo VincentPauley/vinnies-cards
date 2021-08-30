@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <p>selection: {{ selectedValue }}</p>
+  <div class="select-from-list">
+    <h4>{{ label }}</h4>
     <SelectOption
       v-for="option in options"
       :key="option.value"
@@ -13,6 +13,14 @@
   </div>
 </template>
 
+<style lang="css">
+.select-from-list {
+  border: 1px solid lightgray;
+  border-radius: 0.25rem;
+  text-align: left;
+  padding: 0.5rem;
+}
+</style>
 <script>
 import SelectOption from "./SelectOption.vue";
 
@@ -39,8 +47,8 @@ export default {
   }),
   methods: {
     updateSelection(choice) {
-      console.log(">> Choice: ", choice);
       this.selectedValue = choice;
+      this.$emit("selection", choice);
     }
   }
 };
