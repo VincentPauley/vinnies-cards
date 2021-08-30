@@ -21,7 +21,10 @@
       </div>
 
       <p>{{ printYearOptions }}</p>
-
+      <SelectFromList
+        name="print-year"
+        :options="[{ name: 'One', value: 1 },{ name: 'Two', value: 2 }]"
+      />
       <div>
         <label for="print-year">Print Year</label>
         <input
@@ -111,12 +114,19 @@
 <script>
 import axios from "axios";
 
+// APIS
 import api from "@/api/index.js";
 import brands from "@/api/calls/brands";
 import products from "@/api/calls/products";
 import supportedYears from "@/api/calls/supported-years";
 
+// COMPONENTS
+import SelectFromList from "../components/form/SelectFromList.vue";
+
 export default {
+  components: {
+    SelectFromList
+  },
   data: () => ({
     brandOptions: null,
     productOptions: null,

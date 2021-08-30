@@ -68,6 +68,9 @@ npm run drop
 
 ### Features
 
+[ ] - need a form component with radios that handles all of the pre-populated
+options consistently seen with these models.
+
 [ ] - brand name translated on FE
 [ ] - for card add - card type should be enabled only after brand & year
 [ ] - persist values for brand/year/series accross multiple cards
