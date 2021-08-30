@@ -227,10 +227,7 @@ app.post('/new-card', (req, res) => {
       created: new Date().toISOString(),
       name: req.body.name,
       team: req.body.team,
-      brand: req.body.brand,
       position: req.body.position,
-      year: parseInt(req.body.printYear),
-      series: parseInt(req.body.series),
       series_number: parseInt(req.body.seriesNumber),
       cardType: req.body.cardType,
       product_set: {

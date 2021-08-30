@@ -19,6 +19,7 @@
   border-radius: 0.25rem;
   text-align: left;
   padding: 0.5rem;
+  margin-top: 0.5rem;
 }
 </style>
 <script>

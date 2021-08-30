@@ -12,13 +12,13 @@
         <b v-if="!valid.brand">INVALID</b>
       </div>
 
-      <div v-if="productOptionsAvailable">
-        <label for="product">Product</label>
-        <select id="product" v-model="cardModel.product" @change="validateProduct">
-          <option value="SELECT">SELECT</option>
-          <option v-for="product in productOptions" :key="product" :value="product">{{ product }}</option>
-        </select>
-      </div>
+      <SelectFromList
+        v-if="productOptionsAvailable"
+        label="Product"
+        name="product"
+        :options="productOptionsList"
+        @selection="productSelected"
+      />
 
       <SelectFromList
         v-if="printYearOptionsAvailable"
@@ -193,6 +193,16 @@ export default {
         value: printYear
       }));
     },
+    productOptionsList() {
+      if (!this.productOptionsAvailable) {
+        return [];
+      }
+
+      return this.productOptions.map(product => ({
+        name: product,
+        value: product
+      }));
+    },
     allValid() {
       let allValid = true;
 
@@ -261,6 +271,10 @@ export default {
       } catch (e) {
         console.log("e", e);
       }
+    },
+    productSelected(product) {
+      this.cardModel.product = product;
+      this.validateProduct();
     },
     printYearSelected(year) {
       this.cardModel.printYear = year;
