@@ -1,40 +1,25 @@
 <template>
   <div>
-    <div class="radio-wrapper" v-for="option in options" :key="option.value">
-      <input
-        type="radio"
-        :id="`opt-${option.value}`"
-        :name="name"
-        :value="option.value"
-        @click="updateSelection(option.value)"
-      >
-      <label class="radio-label" :for="`opt-${option.value}`">{{ option.name }}</label>
-    </div>
+    <p>selection: {{ selectedValue }}</p>
+    <SelectOption
+      v-for="option in options"
+      :key="option.value"
+      :group-name="name"
+      :value="option.value"
+      :name="option.name"
+      :selected="selectedValue === option.value"
+      @selection="updateSelection"
+    />
   </div>
 </template>
 
-<style lang="css">
-.radio-wrapper {
-  /* border: 1px solid blue; */
-  margin: 0.5rem;
-}
-.radio-wrapper input {
-  display: none;
-}
-.radio-label {
-  box-sizing: border-box;
-  background-color: dodgerblue;
-  color: #ffffff;
-  font-weight: bold;
-  display: block;
-  width: 100%;
-  padding: 0.25rem;
-  border-radius: 0.25rem;
-}
-</style>
-
 <script>
+import SelectOption from "./SelectOption.vue";
+
 export default {
+  components: {
+    SelectOption
+  },
   props: {
     label: {
       type: String,
@@ -49,9 +34,13 @@ export default {
       type: Array
     }
   },
+  data: () => ({
+    selectedValue: null
+  }),
   methods: {
     updateSelection(choice) {
       console.log(">> Choice: ", choice);
+      this.selectedValue = choice;
     }
   }
 };
