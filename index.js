@@ -6,10 +6,13 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 
+const { DB_NAME } = process.env;
+
 function createConnection(req, res, next) {
   r.connect({
     host: process.env.DB_HOST,
-    port: process.env.DB_PORT
+    port: process.env.DB_PORT,
+    db: DB_NAME
   })
     .then(function(conn) {
       req._rdbConn = conn;
@@ -31,6 +34,35 @@ function retrieveFullTableRecords(conn, table) {
       .then(cursor => cursor.toArray())
       .then(r => resolve(r))
       .catch(e => reject(e));
+  });
+}
+
+function query(conn, tableName, constraints) {
+  return new Promise((resolve, reject) => {
+    if (!tableName) {
+      reject('no talbeName was provided');
+    }
+
+    const tableRef = r.table(tableName);
+
+    // apply constraints to reference
+    constraints.forEach(constraint => {
+      tableRef.filter(r.row(constraint.row).eq(constraint.value));
+    });
+
+    tableRef.run(conn, (err, cursor) => {
+      if (err) {
+        reject(err);
+      }
+
+      cursor.toArray((error, records) => {
+        if (error) {
+          reject(error);
+        }
+
+        resolve(records);
+      });
+    });
   });
 }
 
@@ -171,6 +203,24 @@ app.get('/card-types/brand/:brand/print-year/:printYear', (req, res) => {
       });
     });
 });
+
+app.get(
+  '/series/brand/:brand/product/:product/printYear/:printYear',
+  async (req, res) => {
+    try {
+      const x = await query(req._rdbConn, 'productSeries', [
+        { row: 'brand', value: req.params.brand },
+        { row: 'product', value: req.params.product },
+        { row: 'printYear', value: req.params.printYear }
+      ]);
+
+      res.status(200).json({ success: true, series: x[0].series });
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({ success: false });
+    }
+  }
+);
 
 // TODO: possible better option with primary key search
 // r.table('authors').get('7644aaf2-9928-4231-aa68-4e65e31bf219').

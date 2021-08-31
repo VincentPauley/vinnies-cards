@@ -1,5 +1,5 @@
 <template>
-  <div class="select-from-list">
+  <div v-if="show" class="select-from-list">
     <h4>{{ label }}</h4>
     <SelectOption
       v-for="option in options"
@@ -41,6 +41,11 @@ export default {
     options: {
       required: true,
       type: Array
+    }
+  },
+  computed: {
+    show() {
+      return !!this.options.length;
     }
   },
   data: () => ({

@@ -1,19 +1,16 @@
 <template>
-  <div v-if="brandOptionsAvailable && teamOptionsAvailable">
+  <div v-if="teamOptionsAvailable">
     <h1>Add Card</h1>
     <p>Add cards to collection using this dynamicd form.</p>
     <form>
-      <div>
-        <label for="brand">Brand</label>
-        <select id="brand" v-model="cardModel.brand" @change="validateBrand">
-          <option value="SELECT">SELECT</option>
-          <option v-for="brand in brandOptions" :key="brand.id" :value="brand.id">{{ brand.name }}</option>
-        </select>
-        <b v-if="!valid.brand">INVALID</b>
-      </div>
+      <SelectFromList
+        label="Brand"
+        name="brand"
+        :options="brandOptionsList"
+        @selection="brandSelected"
+      />
 
       <SelectFromList
-        v-if="productOptionsAvailable"
         label="Product"
         name="product"
         :options="productOptionsList"
@@ -21,11 +18,17 @@
       />
 
       <SelectFromList
-        v-if="printYearOptionsAvailable"
         label="Print Year"
         name="print-year"
-        :options="printYearListOptions"
+        :options="printYearOptionsList"
         @selection="printYearSelected"
+      />
+
+      <SelectFromList
+        label="Series"
+        name="series"
+        :options="seriesOptionList"
+        @selection="seriesSelected"
       />
 
       <div v-if="valid.brand && valid.printYear">
@@ -111,6 +114,7 @@ import api from "@/api/index.js";
 import brands from "@/api/calls/brands";
 import products from "@/api/calls/products";
 import supportedYears from "@/api/calls/supported-years";
+import series from "@/api/calls/series";
 
 // COMPONENTS
 import SelectFromList from "../components/form/SelectFromList.vue";
@@ -123,6 +127,7 @@ export default {
     brandOptions: null,
     productOptions: null,
     printYearOptions: null,
+    seriesOptions: null,
     cardTypeOptions: null,
     teamOptions: null,
     seriesTypeOptions: null,
@@ -156,6 +161,9 @@ export default {
     productValid() {
       return this.valid.product;
     },
+    printYearValid() {
+      return this.valid.printYear;
+    },
     /**
      * @computed baseInfoSet
      *
@@ -167,40 +175,51 @@ export default {
     baseInfoSet() {
       return this.valid.brand && this.valid.printYear;
     },
-    brandOptionsAvailable() {
-      return Array.isArray(this.brandOptions);
-    },
-    productOptionsAvailable() {
-      return Array.isArray(this.productOptions);
-    },
     cardTypeOptionsAvailable() {
       return Array.isArray(this.cardTypeOptions);
     },
     teamOptionsAvailable() {
       return Array.isArray(this.teamOptions);
     },
-    printYearOptionsAvailable() {
-      return Array.isArray(this.printYearListOptions);
-    },
     // need to extend the format here in order to have valid content
-    printYearListOptions() {
-      if (!Array.isArray(this.printYearOptions)) {
-        return null;
+    seriesOptionList() {
+      if (!Array.isArray(this.seriesOptions)) {
+        return [];
       }
 
-      return this.printYearOptions.map(printYear => ({
+      return this.seriesOptions.slice().map(seriesOption => ({
+        name: seriesOption.toString(),
+        value: seriesOption
+      }));
+    },
+    printYearOptionsList() {
+      if (!Array.isArray(this.printYearOptions)) {
+        return [];
+      }
+
+      return this.printYearOptions.slice().map(printYear => ({
         name: printYear.toString(),
         value: printYear
       }));
     },
     productOptionsList() {
-      if (!this.productOptionsAvailable) {
+      if (!Array.isArray(this.productOptions)) {
         return [];
       }
 
-      return this.productOptions.map(product => ({
+      return this.productOptions.slice().map(product => ({
         name: product,
         value: product
+      }));
+    },
+    brandOptionsList() {
+      if (!Array.isArray(this.brandOptions)) {
+        return [];
+      }
+
+      return this.brandOptions.slice().map(brand => ({
+        name: brand.name,
+        value: brand.id
       }));
     },
     allValid() {
@@ -229,6 +248,11 @@ export default {
     productValid(valid) {
       if (valid) {
         this.retrieveSupportedYears();
+      }
+    },
+    printYearValid(valid) {
+      if (valid) {
+        this.retrieveProductSeries();
       }
     }
   },
@@ -272,6 +296,24 @@ export default {
         console.log("e", e);
       }
     },
+    async retrieveProductSeries() {
+      try {
+        console.log("get the series!");
+        const availableSeries = await series.getSeriesForProduct(
+          this.cardModel.brand,
+          this.cardModel.product,
+          this.cardModel.printYear
+        );
+
+        this.seriesOptions = availableSeries.data.series;
+      } catch (e) {
+        console.log("e", e);
+      }
+    },
+    brandSelected(brand) {
+      this.cardModel.brand = brand;
+      this.validateBrand();
+    },
     productSelected(product) {
       this.cardModel.product = product;
       this.validateProduct();
@@ -279,6 +321,10 @@ export default {
     printYearSelected(year) {
       this.cardModel.printYear = year;
       this.validatePrintYear();
+    },
+    seriesSelected(series) {
+      this.cardModel.series = series;
+      this.validateSeries();
     },
     async retrieveCardTypes() {
       try {
