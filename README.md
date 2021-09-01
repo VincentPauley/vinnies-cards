@@ -68,8 +68,14 @@ npm run drop
 
 ### Features
 
-[ ] - need a form component with radios that handles all of the pre-populated
+[X] - need a form component with radios that handles all of the pre-populated
 options consistently seen with these models.
+[ ] - get other components into SelectFromList component
+
+=== Select From List Enhancements ===
+[ ] - collapse on selection and allow for change if requested
+[ ] - animations
+[ ] - better color schemes
 
 [ ] - brand name translated on FE
 [ ] - for card add - card type should be enabled only after brand & year

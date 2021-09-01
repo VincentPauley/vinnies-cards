@@ -5,6 +5,12 @@
       "brand": "T",
       "year": 2021,
       "product": "baseball",
+      "series": 1,
+      "map": [
+        { "attribute": "type", "options": "types" },
+        { "attribute": "subset", "options": "subsets" },
+        { "attribute": "parallel", "options": "parallels" }
+      ],
       "types": [
         {
           "type": "Base",
@@ -35,7 +41,7 @@
           "id": "WSH"
         }
       ],
-      "seriesTypes": [
+      "subsets": [
         {
           "type": "Base",
           "id": "B"
@@ -45,11 +51,11 @@
           "id": "TC"
         },
         {
-          "type": "1986",
+          "type": "1986 35th Anniversary",
           "id": "86B"
         }
       ],
-      "variations": [
+      "parallels": [
         {
           "type": "Gold",
           "id": "G"

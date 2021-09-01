@@ -40,16 +40,17 @@ function dropTable(tableName) {
     });
   });
 }
+
 // TODO: just make this a straight-up table drop
 (async () => {
-  console.log('=Dropping Tables=');
+  console.log('=Do it manually, script update needed=');
 
-  const tableNames = await listTables();
+  // const tableNames = await listTables();
 
-  console.log('tables');
-  console.log(tableNames);
+  // console.log('tables');
+  // console.log(tableNames);
 
-  await Promise.all(tableNames.map(t => dropTable(t)));
+  // await Promise.all(tableNames.map(t => dropTable(t)));
   // TODO: make this list dynamic
   // await Promise.all([
   //   dropTable('cards'),
@@ -61,5 +62,5 @@ function dropTable(tableName) {
   //   dropTable('productSeries')
   // ]);
   // console.log('=All Tables Dropped=');
-  console.log('finished...');
+  // console.log('finished...');
 })();

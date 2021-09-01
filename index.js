@@ -118,6 +118,7 @@ app.get('/mlb-teams', (req, res) => {
   });
 });
 
+// TODO: USE query()
 app.get('/products/brand/:brand', (req, res) => {
   r.table('products')
     .filter(r.row('brand').eq(req.params.brand))
@@ -151,6 +152,7 @@ app.get('/products/brand/:brand', (req, res) => {
 // provide brand & product
 // get associated years available
 
+// TODO: USE query()
 app.get('/supported-years/brand/:brand/product/:product', (req, res) => {
   const { brand, product } = req.params;
 
@@ -167,6 +169,7 @@ app.get('/supported-years/brand/:brand/product/:product', (req, res) => {
     });
 });
 
+// TODO: this is deprecated - remove
 app.get('/card-types/brand/:brand/print-year/:printYear', (req, res) => {
   const { brand, printYear } = req.params;
 
@@ -208,13 +211,36 @@ app.get(
   '/series/brand/:brand/product/:product/printYear/:printYear',
   async (req, res) => {
     try {
-      const x = await query(req._rdbConn, 'productSeries', [
+      const seriesData = await query(req._rdbConn, 'productSeries', [
         { row: 'brand', value: req.params.brand },
         { row: 'product', value: req.params.product },
         { row: 'printYear', value: req.params.printYear }
       ]);
 
-      res.status(200).json({ success: true, series: x[0].series });
+      res.status(200).json({ success: true, series: seriesData[0].series });
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({ success: false });
+    }
+  }
+);
+
+app.get(
+  '/card-types/brand/:brand/product/:product/print-year/:printYear/series/:series',
+  async (req, res) => {
+    try {
+      const cardTypeData = await query(req._rdbConn, 'cardTypes', [
+        { row: 'brand', value: req.params.brand },
+        { row: 'product', value: req.params.product },
+        { row: 'printYear', value: req.params.printYear },
+        { row: 'series', value: req.params.series }
+      ]);
+
+      const { map, types, subsets, parallels } = cardTypeData[0];
+
+      const sets = [{ types }, { subsets }, { parallels }];
+
+      res.status(200).json({ success: true, map, sets });
     } catch (e) {
       console.error(e);
       res.status(500).json({ success: false });

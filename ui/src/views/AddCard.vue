@@ -1,53 +1,48 @@
 <template>
   <div v-if="teamOptionsAvailable">
     <h1>Add Card</h1>
-    <p>Add cards to collection using this dynamicd form.</p>
+    <p>This form is for defining card models, it does not necessarily imply that you own that card.</p>
     <form>
-      <SelectFromList
-        label="Brand"
-        name="brand"
-        :options="brandOptionsList"
-        @selection="brandSelected"
-      />
+      <fieldset>
+        <legend>Product Set</legend>
+        <p>This is the base information used to identify what kind of card you are creating. All other fields stem from this Product Set.</p>
+        <SelectFromList
+          label="Brand"
+          name="brand"
+          :options="brandOptionsList"
+          @selection="brandSelected"
+        />
 
-      <SelectFromList
-        label="Product"
-        name="product"
-        :options="productOptionsList"
-        @selection="productSelected"
-      />
+        <SelectFromList
+          label="Product"
+          name="product"
+          :options="productOptionsList"
+          @selection="productSelected"
+        />
 
-      <SelectFromList
-        label="Print Year"
-        name="print-year"
-        :options="printYearOptionsList"
-        @selection="printYearSelected"
-      />
+        <SelectFromList
+          label="Print Year"
+          name="print-year"
+          :options="printYearOptionsList"
+          @selection="printYearSelected"
+        />
 
-      <SelectFromList
-        label="Series"
-        name="series"
-        :options="seriesOptionList"
-        @selection="seriesSelected"
-      />
+        <SelectFromList
+          label="Series"
+          name="series"
+          :options="seriesOptionList"
+          @selection="seriesSelected"
+        />
+      </fieldset>
 
-      <div v-if="valid.brand && valid.printYear">
-        <div>
-          <label for="series">Series</label>
-          <input id="series" type="number" v-model="cardModel.series" @keyup="validateSeries">
-          <b v-if="!valid.series">INVALID</b>
-        </div>
+      <p>OK, once product set is known it's possible to lookup other details about the cards</p>
+
+      <div v-if="productSetReady">
         <div>
           <label for="name">Name</label>
           <input id="name" type="text" v-model="cardModel.name" @keyup="validateName">
           <b v-if="!valid.name">INVALID</b>
         </div>
-
-        <!-- <div>
-          <label for="team">Team</label>
-          <input id="team" type="text" v-model="cardModel.team" @keyup="validateTeam">
-          <b v-if="!valid.team">INVALID</b>
-        </div>-->
 
         <label for="team">Team</label>
         <!-- TODO: this validation would be better as a computed property -->
@@ -115,6 +110,7 @@ import brands from "@/api/calls/brands";
 import products from "@/api/calls/products";
 import supportedYears from "@/api/calls/supported-years";
 import series from "@/api/calls/series";
+import cardTypes from "@/api/calls/cardTypes";
 
 // COMPONENTS
 import SelectFromList from "../components/form/SelectFromList.vue";
@@ -132,15 +128,20 @@ export default {
     teamOptions: null,
     seriesTypeOptions: null,
     variationOptions: null,
+    // validation could really be a null check with the new model
+    // would love to have these tied to their options for cleaner reading
     cardModel: {
-      brand: "SELECT",
-      product: "SELECT",
+      // product set
+      brand: null,
+      product: null,
       printYear: null,
+      series: null,
+      // other card details
       name: "",
       cardType: null,
       team: "SELECT",
       position: "SELECT",
-      series: null,
+
       seriesNumber: null
     },
     valid: {
@@ -164,16 +165,16 @@ export default {
     printYearValid() {
       return this.valid.printYear;
     },
-    /**
-     * @computed baseInfoSet
-     *
-     * Once brand and year are set, more information about the
-     * cards attributes can be looked up to generate form inputs.
-     *
-     * TODO: need to edit contents here
-     */
-    baseInfoSet() {
-      return this.valid.brand && this.valid.printYear;
+    // detects if all pieces of product set model have been set to value and returns a boolean
+    productSetReady() {
+      return (
+        [
+          !!this.cardModel.brand,
+          !!this.cardModel.product,
+          !!this.cardModel.printYear,
+          !!this.cardModel.series
+        ].filter(e => e === false).length === 0
+      );
     },
     cardTypeOptionsAvailable() {
       return Array.isArray(this.cardTypeOptions);
@@ -254,6 +255,11 @@ export default {
       if (valid) {
         this.retrieveProductSeries();
       }
+    },
+    productSetReady(valid) {
+      if (valid) {
+        this.retrieveCardTypes();
+      }
     }
   },
   async created() {
@@ -298,7 +304,6 @@ export default {
     },
     async retrieveProductSeries() {
       try {
-        console.log("get the series!");
         const availableSeries = await series.getSeriesForProduct(
           this.cardModel.brand,
           this.cardModel.product,
@@ -306,6 +311,20 @@ export default {
         );
 
         this.seriesOptions = availableSeries.data.series;
+      } catch (e) {
+        console.log("e", e);
+      }
+    },
+    async retrieveCardTypes() {
+      try {
+        const availableCardTypes = await cardTypes.getProductSetCardTypes(
+          this.cardModel.brand,
+          this.cardModel.product,
+          this.cardModel.printYear,
+          this.cardModel.series
+        );
+
+        console.log(availableCardTypes);
       } catch (e) {
         console.log("e", e);
       }
@@ -326,36 +345,36 @@ export default {
       this.cardModel.series = series;
       this.validateSeries();
     },
-    async retrieveCardTypes() {
-      try {
-        const { brand, printYear } = this.cardModel;
-        const endpoint = `/card-types/brand/${brand}/print-year/${printYear}`;
-        const cardTypeResponse = await api.get(endpoint);
+    // async retrieveCardTypes() {
+    //   try {
+    //     const { brand, printYear } = this.cardModel;
+    //     const endpoint = `/card-types/brand/${brand}/print-year/${printYear}`;
+    //     const cardTypeResponse = await api.get(endpoint);
 
-        if (cardTypeResponse.status !== 200) {
-          throw new Error(
-            `improper resonse code for GET /card-types: ${
-              cardTypeResponse.status
-            }`
-          );
-        }
+    //     if (cardTypeResponse.status !== 200) {
+    //       throw new Error(
+    //         `improper resonse code for GET /card-types: ${
+    //           cardTypeResponse.status
+    //         }`
+    //       );
+    //     }
 
-        // TODO: this group used should be looked up based on the brand/year dynamically
-        // this.cardTypeOptions = cardTypeResponse.data[0].types;
-        // first option should be assumed the default option
-        // this.cardModel.type = cardTypeResponse.data[0].types[0].id;
+    //     // TODO: this group used should be looked up based on the brand/year dynamically
+    //     // this.cardTypeOptions = cardTypeResponse.data[0].types;
+    //     // first option should be assumed the default option
+    //     // this.cardModel.type = cardTypeResponse.data[0].types[0].id;
 
-        const { types, seriesTypes, variations } = cardTypeResponse.data;
+    //     const { types, seriesTypes, variations } = cardTypeResponse.data;
 
-        this.cardTypeOptions = types;
-        this.seriesTypeOptions = seriesTypes;
-        this.variationOptions = variations;
+    //     this.cardTypeOptions = types;
+    //     this.seriesTypeOptions = seriesTypes;
+    //     this.variationOptions = variations;
 
-        console.log("Check Full: ", cardTypeResponse.data);
-      } catch (e) {
-        console.error(e);
-      }
-    },
+    //     console.log("Check Full: ", cardTypeResponse.data);
+    //   } catch (e) {
+    //     console.error(e);
+    //   }
+    // },
     async retrieveMlbTeams() {
       try {
         const mlbTeamsResponse = await api.get("/mlb-teams");
