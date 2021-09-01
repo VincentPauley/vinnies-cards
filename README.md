@@ -58,6 +58,9 @@ npm run drop
 
 [X] - card type table
 [X] - single player can become typed instead.
+[ ] - long term model consideration: don't want to enter duplicate full records
+for the same card I have many of, so instead create a table for mapping cards
+that I already have to the id of a card record.
 
 [ ] - series type needed (in data just need in from)
 ... which can join to brand/year/product(mlb... etc)
@@ -68,9 +71,12 @@ npm run drop
 
 ### Features
 
+[ ] - Refactor and spin-off product set to it's own component.
 [X] - need a form component with radios that handles all of the pre-populated
 options consistently seen with these models.
 [ ] - get other components into SelectFromList component
+[ ] - want to start having fun with the data, make a way to run a staging DB that will actually
+not be dropped and rewritten.
 
 === Select From List Enhancements ===
 [ ] - collapse on selection and allow for change if requested

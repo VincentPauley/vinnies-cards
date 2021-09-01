@@ -38,6 +38,10 @@
       <p>OK, once product set is known it's possible to lookup other details about the cards</p>
 
       <div v-if="productSetReady">
+        <CardTypeAttributes
+          :attribute-map="cardTypeAttributeMap"
+          :attribute-options="cardTypeAttributeData"
+        />
         <div>
           <label for="name">Name</label>
           <input id="name" type="text" v-model="cardModel.name" @keyup="validateName">
@@ -114,20 +118,25 @@ import cardTypes from "@/api/calls/cardTypes";
 
 // COMPONENTS
 import SelectFromList from "../components/form/SelectFromList.vue";
+import CardTypeAttributes from "@/components/CardTypeAttributes.vue";
 
 export default {
   components: {
-    SelectFromList
+    SelectFromList,
+    CardTypeAttributes
   },
   data: () => ({
     brandOptions: null,
     productOptions: null,
     printYearOptions: null,
     seriesOptions: null,
-    cardTypeOptions: null,
+    cardTypeOptions: null, // < TODO: will be obsolete
     teamOptions: null,
-    seriesTypeOptions: null,
-    variationOptions: null,
+    seriesTypeOptions: null, // < TODO: will be obsolete
+    variationOptions: null, // < TODO: will be obsolete
+
+    cardTypeAttributeMap: [],
+    cardTypeAttributeData: [],
     // validation could really be a null check with the new model
     // would love to have these tied to their options for cleaner reading
     cardModel: {
@@ -324,7 +333,10 @@ export default {
           this.cardModel.series
         );
 
-        console.log(availableCardTypes);
+        // this.cardTypeData = availableCardTypes.data
+
+        this.cardTypeAttributeMap = availableCardTypes.data.map;
+        this.cardTypeAttributeData = availableCardTypes.data.sets;
       } catch (e) {
         console.log("e", e);
       }
