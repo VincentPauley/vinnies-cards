@@ -7,7 +7,10 @@
       :value="value"
       @click="updateSelection(value)"
     >
-    <label :class="['radio-label', { 'selected': this.selected }]" :for="`opt-${value}`">{{ name }}</label>
+    <label
+      :class="['radio-label', { 'selected': this.isSelected }]"
+      :for="`opt-${value}`"
+    >{{ name }}</label>
   </div>
 </template>
 
@@ -48,16 +51,22 @@ export default {
       required: true,
       type: String
     },
-    selected: {
-      type: Boolean,
-      default: false
+    // selected: {
+    //   type: Boolean,
+    //   default: false
+    // },
+    selectedValue: {
+      default: null
     }
   },
-  data: () => ({
-    selectedValue: null
-  }),
+  computed: {
+    isSelected() {
+      return this.value === this.selectedValue;
+    }
+  },
   methods: {
     updateSelection(choice) {
+      console.log("SelectOption clicked", choice);
       this.$emit("selection", choice);
     }
   }

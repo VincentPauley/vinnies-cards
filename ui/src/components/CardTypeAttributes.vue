@@ -3,21 +3,26 @@
     Card Type Attributes
     <ul>
       <li v-for="level in configuredData" :key="level.datapoint">
-        <h5>{{ level.datapoint }}</h5>
-        <p>{{ level.options }}</p>
+        <SelectFromList
+          :provide-name="true"
+          :label="level.datapoint"
+          :name="level.datapoint"
+          :options="level.options"
+          @selection="handleSelection"
+        />
       </li>
+      <!-- @selection="brandSelected" -->
     </ul>
-    <!-- <SelectFromList
-          label="Brand"
-          name="brand"
-          :options="brandOptionsList"
-          @selection="brandSelected"
-    />-->
   </div>
 </template>
 
 <script>
+import SelectFromList from "./form/SelectFromList.vue";
+
 export default {
+  components: {
+    SelectFromList
+  },
   props: {
     attributeMap: {
       type: Array,
@@ -29,14 +34,20 @@ export default {
     }
   },
   methods: {
+    reMapOptions(options) {
+      return options.map(o => ({ name: o.type, value: o.id }));
+    },
     getOptionsForDataPoint(options) {
       const match = this.attributeOptions.filter(x => {
         if (x[options]) return x[options];
       })[0];
 
       if (match) {
-        return match[options];
+        return this.reMapOptions(match[options]);
       }
+    },
+    handleSelection(selection) {
+      console.log("handleSelection: ", selection);
     }
   },
   computed: {

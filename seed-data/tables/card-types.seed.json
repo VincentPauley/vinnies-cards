@@ -8,17 +8,17 @@
       "series": 1,
       "map": [
         { "attribute": "type", "options": "types" },
-        { "attribute": "subset", "options": "subsets" },
+        { "attribute": "insert", "options": "inserts" },
         { "attribute": "parallel", "options": "parallels" }
       ],
       "types": [
         {
-          "type": "Base",
-          "id": "B"
+          "type": "Player",
+          "id": "PLAY"
         },
         {
           "type": "Team Card",
-          "id": "T"
+          "id": "TEAM"
         },
         {
           "type": "League Leaders",
@@ -41,7 +41,7 @@
           "id": "WSH"
         }
       ],
-      "subsets": [
+      "inserts": [
         {
           "type": "Base",
           "id": "B"

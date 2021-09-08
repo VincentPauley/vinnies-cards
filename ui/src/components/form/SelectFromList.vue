@@ -7,7 +7,7 @@
       :group-name="name"
       :value="option.value"
       :name="option.name"
-      :selected="selectedValue === option.value"
+      :selectedValue="selectedValue"
       @selection="updateSelection"
     />
   </div>
@@ -41,6 +41,10 @@ export default {
     options: {
       required: true,
       type: Array
+    },
+    provideName: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -54,7 +58,17 @@ export default {
   methods: {
     updateSelection(choice) {
       this.selectedValue = choice;
-      this.$emit("selection", choice);
+
+      if (this.provideName) {
+        // TODO: this is a crutch for now but eventually all instances should use this
+        const { name } = this;
+        this.$emit("selection", {
+          name,
+          choice
+        });
+      } else {
+        this.$emit("selection", choice);
+      }
     }
   }
 };

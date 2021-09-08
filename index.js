@@ -236,9 +236,8 @@ app.get(
         { row: 'series', value: req.params.series }
       ]);
 
-      const { map, types, subsets, parallels } = cardTypeData[0];
-
-      const sets = [{ types }, { subsets }, { parallels }];
+      const { map, types, inserts, parallels } = cardTypeData[0];
+      const sets = [{ types }, { inserts }, { parallels }];
 
       res.status(200).json({ success: true, map, sets });
     } catch (e) {
