@@ -4,7 +4,7 @@
     {
       "id": "TB",
       "name": "Rays",
-      "location": "Tampa Bays",
+      "location": "Tampa Bay",
       "league": "AL",
       "division": "E"
     },
@@ -81,7 +81,7 @@
     {
       "id": "OAK",
       "name": "Athletics",
-      "location": "Tampa Bays",
+      "location": "Oakland",
       "league": "AL",
       "division": "W"
     },

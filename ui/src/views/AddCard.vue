@@ -41,6 +41,7 @@
         <CardTypeAttributes
           :attribute-map="cardTypeAttributeMap"
           :attribute-options="cardTypeAttributeData"
+          @attribute-set="handleAttributeSet"
         />
         <div>
           <label for="name">Name</label>
@@ -88,18 +89,8 @@
           >
           <b v-if="!valid.series">INVALID</b>
         </div>
-
-        <label for="card-type">Card Type</label>
-        <select name="type" id="card-type" v-model="cardModel.cardType">
-          <option
-            v-for="cardType in cardTypeOptions"
-            :key="cardType.id"
-            :value="cardType.id"
-          >{{ cardType.type }}</option>
-        </select>
-        {{seriesTypeOptions}}
-        {{variationOptions}}
       </div>
+      <p>{{ cardModel }}</p>
       <button type="submit" :disabled="!allValid" @click.prevent="submit">Submit</button>
     </form>
   </div>
@@ -130,10 +121,7 @@ export default {
     productOptions: null,
     printYearOptions: null,
     seriesOptions: null,
-    cardTypeOptions: null, // < TODO: will be obsolete
     teamOptions: null,
-    seriesTypeOptions: null, // < TODO: will be obsolete
-    variationOptions: null, // < TODO: will be obsolete
 
     cardTypeAttributeMap: [],
     cardTypeAttributeData: [],
@@ -151,7 +139,11 @@ export default {
       team: "SELECT",
       position: "SELECT",
 
-      seriesNumber: null
+      seriesNumber: null,
+
+      type: null,
+      insert: null,
+      parallel: null
     },
     valid: {
       brand: false,
@@ -184,9 +176,6 @@ export default {
           !!this.cardModel.series
         ].filter(e => e === false).length === 0
       );
-    },
-    cardTypeOptionsAvailable() {
-      return Array.isArray(this.cardTypeOptions);
     },
     teamOptionsAvailable() {
       return Array.isArray(this.teamOptions);
@@ -276,6 +265,9 @@ export default {
     this.retrieveMlbTeams();
   },
   methods: {
+    handleAttributeSet(attribute) {
+      this.cardModel[attribute.name] = attribute.choice;
+    },
     async retrieveBrands() {
       try {
         const brandResponse = await brands.getBrands();
@@ -370,17 +362,6 @@ export default {
     //         }`
     //       );
     //     }
-
-    //     // TODO: this group used should be looked up based on the brand/year dynamically
-    //     // this.cardTypeOptions = cardTypeResponse.data[0].types;
-    //     // first option should be assumed the default option
-    //     // this.cardModel.type = cardTypeResponse.data[0].types[0].id;
-
-    //     const { types, seriesTypes, variations } = cardTypeResponse.data;
-
-    //     this.cardTypeOptions = types;
-    //     this.seriesTypeOptions = seriesTypes;
-    //     this.variationOptions = variations;
 
     //     console.log("Check Full: ", cardTypeResponse.data);
     //   } catch (e) {

@@ -64,7 +64,6 @@ export default {
   },
   methods: {
     updateSelection(choice) {
-      console.log("SelectOption clicked", choice);
       this.$emit("selection", choice);
     }
   }

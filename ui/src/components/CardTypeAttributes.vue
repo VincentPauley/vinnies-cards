@@ -1,7 +1,7 @@
 <template>
-  <div>
-    Card Type Attributes
-    <ul>
+  <fieldset>
+    <legend>Card Type Attributes</legend>
+    <ul class="card-type-attribute-options">
       <li v-for="level in configuredData" :key="level.datapoint">
         <SelectFromList
           :provide-name="true"
@@ -11,10 +11,17 @@
           @selection="handleSelection"
         />
       </li>
-      <!-- @selection="brandSelected" -->
     </ul>
-  </div>
+  </fieldset>
 </template>
+
+<style lang="css">
+.card-type-attribute-options {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
 
 <script>
 import SelectFromList from "./form/SelectFromList.vue";
@@ -46,8 +53,8 @@ export default {
         return this.reMapOptions(match[options]);
       }
     },
-    handleSelection(selection) {
-      console.log("handleSelection: ", selection);
+    handleSelection(selectionSet) {
+      this.$emit("attribute-set", selectionSet);
     }
   },
   computed: {
