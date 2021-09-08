@@ -14,11 +14,11 @@
       "types": [
         {
           "type": "Player",
-          "id": "PLAY"
+          "id": "P"
         },
         {
           "type": "Team Card",
-          "id": "TEAM"
+          "id": "T"
         },
         {
           "type": "League Leaders",

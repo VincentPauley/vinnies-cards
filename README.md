@@ -54,9 +54,12 @@ npm run drop
 [ ] - unit testing
 [ ] - configuration sub-route for all attribute data
 
+#### Select from LIst component
+
+[ ] - need ids for radio to be more unique, duplicate values was causing issue in update
+
 ### Data
 
-[X] - card type table
 [X] - single player can become typed instead.
 [ ] - long term model consideration: don't want to enter duplicate full records
 for the same card I have many of, so instead create a table for mapping cards

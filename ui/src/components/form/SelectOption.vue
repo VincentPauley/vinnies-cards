@@ -2,15 +2,12 @@
   <div class="radio-wrapper">
     <input
       type="radio"
-      :id="`opt-${value}`"
+      :id="optionID"
       :name="groupName"
       :value="value"
       @click="updateSelection(value)"
     >
-    <label
-      :class="['radio-label', { 'selected': this.isSelected }]"
-      :for="`opt-${value}`"
-    >{{ name }}</label>
+    <label :class="['radio-label', { 'selected': this.isSelected }]" :for="optionID">{{ name }}</label>
   </div>
 </template>
 
@@ -38,6 +35,8 @@
 </style>
 
 <script>
+import uniqid from "uniqid";
+
 export default {
   props: {
     value: {
@@ -51,10 +50,6 @@ export default {
       required: true,
       type: String
     },
-    // selected: {
-    //   type: Boolean,
-    //   default: false
-    // },
     selectedValue: {
       default: null
     }
@@ -62,6 +57,9 @@ export default {
   computed: {
     isSelected() {
       return this.value === this.selectedValue;
+    },
+    optionID() {
+      return `opt-${uniqid()}-${this.value}`;
     }
   },
   methods: {
