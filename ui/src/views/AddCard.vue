@@ -1,6 +1,7 @@
 <template>
   <div v-if="teamOptionsAvailable">
     <h1>Add Card</h1>
+    <p>mode: {{ mode }}</p>
     <p>This form is for defining card models, it does not necessarily imply that you own that card.</p>
     <form>
       <fieldset>
@@ -98,6 +99,7 @@
 
 <script>
 import axios from "axios";
+import { mapGetters } from "vuex";
 
 // APIS
 import api from "@/api/index.js";
@@ -157,6 +159,9 @@ export default {
     }
   }),
   computed: {
+    ...mapGetters({
+      mode: "mode"
+    }),
     brandValid() {
       return this.valid.brand;
     },
