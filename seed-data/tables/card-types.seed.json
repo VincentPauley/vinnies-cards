@@ -64,7 +64,17 @@
           "type": "Rainbow Foil",
           "id": "RF"
         }
-      ]
+      ],
+      "specials": {
+        "team": {
+          "singular": true,
+          "table": "mlbTeams"
+        },
+        "position": {
+          "singular": false,
+          "table": "baseballPositions"
+        }
+      }
     }
   ]
 }

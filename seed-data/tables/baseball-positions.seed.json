@@ -1,0 +1,45 @@
+{
+  "tableName": "baseballPositions",
+  "records": [
+    {
+      "name": "Pitcher",
+      "id": "P"
+    },
+    {
+      "name": "Catcher",
+      "id": "C"
+    },
+    {
+      "name": "First Base",
+      "id": "1B"
+    },
+    {
+      "name": "Second Base",
+      "id": "2B"
+    },
+    {
+      "name": "Short Stop",
+      "id": "SS"
+    },
+    {
+      "name": "Third Base",
+      "id": "3B"
+    },
+    {
+      "name": "Outfield",
+      "id": "OF"
+    },
+    {
+      "name": "Left Field",
+      "id": "LF"
+    },
+    {
+      "name": "Center Field",
+      "id": "CF"
+    },
+    {
+      "name": "Right Field",
+      "id": "RF"
+    }
+  ]
+}

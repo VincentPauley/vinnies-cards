@@ -6,12 +6,16 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 
-const { DB_NAME } = process.env;
+const { MODE } = process.env;
+
+console.log(`running in ${MODE} mode`);
 
 function createConnection(req, res, next) {
+  const { DB_NAME, DB_HOST, DB_PORT } = process.env;
+
   r.connect({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
+    host: DB_HOST,
+    port: DB_PORT,
     db: DB_NAME
   })
     .then(function(conn) {
@@ -66,12 +70,20 @@ function query(conn, tableName, constraints) {
   });
 }
 
+function sendMode(req, res, next) {
+  res.set('Access-Control-Expose-Headers', 'mode');
+  res.set('mode', MODE);
+  next();
+}
+
 app.use(cors());
 // Body-parser middleware
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 
 app.use(createConnection);
+
+app.use(sendMode);
 
 app.get('/', (req, res) => {
   r.table('cards')
@@ -148,9 +160,6 @@ app.get('/products/brand/:brand', (req, res) => {
       });
     });
 });
-
-// provide brand & product
-// get associated years available
 
 // TODO: USE query()
 app.get('/supported-years/brand/:brand/product/:product', (req, res) => {
@@ -236,10 +245,10 @@ app.get(
         { row: 'series', value: req.params.series }
       ]);
 
-      const { map, types, inserts, parallels } = cardTypeData[0];
+      const { map, types, inserts, parallels, specials } = cardTypeData[0];
       const sets = [{ types }, { inserts }, { parallels }];
 
-      res.status(200).json({ success: true, map, sets });
+      res.status(200).json({ success: true, map, sets, specials });
     } catch (e) {
       console.error(e);
       res.status(500).json({ success: false });
@@ -296,6 +305,8 @@ app.post('/new-card', (req, res) => {
     });
   }
 
+  console.log(req.body);
+
   r.table('cards')
     .insert({
       id: uniqid(),
@@ -304,14 +315,17 @@ app.post('/new-card', (req, res) => {
       team: req.body.team,
       position: req.body.position,
       series_number: parseInt(req.body.seriesNumber),
-      cardType: req.body.cardType,
       product_set: {
         brand: req.body.brand,
         product: req.body.product,
         print_year: req.body.printYear,
         series: parseInt(req.body.series)
+      },
+      card_type: {
+        type: req.body.type,
+        insert: req.body.insert,
+        parallel: req.body.parallel
       }
-      // seriesType: Base, TC, 86B, ...etc
     })
     .run(req._rdbConn, function(err, result) {
       if (err) throw err;

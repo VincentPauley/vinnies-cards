@@ -42,9 +42,9 @@ npm run drop
 
 ## TODOS
 
-### Bugs
+- refresh dbs for specials data in card-types
 
-[X] - possible issue involving duplicate create?
+### Bugs
 
 ### Technical
 
@@ -56,7 +56,7 @@ npm run drop
 
 #### Select from LIst component
 
-[ ] - need ids for radio to be more unique, duplicate values was causing issue in update
+[X] - need ids for radio to be more unique, duplicate values was causing issue in update
 
 ### Data
 

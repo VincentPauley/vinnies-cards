@@ -2,23 +2,25 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:3000';
 
+axios.interceptors.response.use(config => {
+  const { mode } = config.headers;
+  console.log(`app running in: ${mode} mode`);
+  return config;
+});
+
 export default {
   get(url, data) {
     return axios.get(`${BASE_URL}${url}`, data);
-    // async retrieveBrands() {
-    //   try {
-    //     const brandResponse = await axios.get("http://localhost:3000/brands");
-
-    //     if (brandResponse.status !== 200) {
-    //       throw new Error(
-    //         `improper resonse code for GET /brands: ${brandResponse.status}`
-    //       );
-    //     }
-
-    //     this.brandOptions = brandResponse.data;
-    //   } catch (e) {
-    //     console.error(e);
-    //   }
-    // },
+    // return new Promise((resolve, reject) => {
+    //   axios
+    //     .get(`${BASE_URL}${url}`, data)
+    //     .then(r => {
+    //       console.log('LOOK', r);
+    //       resolve(r);
+    //     })
+    //     .catch(e => {
+    //       reject('get(): ERROR: ', e);
+    //     });
+    // });
   }
 };
