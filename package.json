@@ -8,8 +8,8 @@
     "dev": "nodemon index.js",
     "db-create": "node db-create.js",
     "seed": "node seed-script.js",
-    "drop": "node drop-data.js",
-    "db-update": "npm run drop && npm run seed"
+    "db-update": "npm run drop && npm run seed",
+    "drop-db-dev": "node db-dropper.js cardstore"
   },
   "repository": {
     "type": "git",
