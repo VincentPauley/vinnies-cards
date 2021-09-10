@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <div class="header">
-      <p>Mode: {{ applicationMode }}</p>
-    </div>
+    <Header/>
     <div id="nav">
       <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>|
@@ -14,6 +12,10 @@
 </template>
 
 <style>
+body {
+  padding: 0;
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -37,12 +39,11 @@
 </style>
 
 <script>
-import { mapGetters } from "vuex";
+import Header from "./components/Header.vue";
+
 export default {
-  computed: {
-    ...mapGetters({
-      applicationMode: "mode"
-    })
+  components: {
+    Header
   }
 };
 </script>
